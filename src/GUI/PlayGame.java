@@ -47,23 +47,23 @@ public class PlayGame extends JPanel implements Runnable, ActionListener {
         g2d.setStroke(new java.awt.BasicStroke(2));
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         
-        mMagager.draWBackground(g2d);
-        mMagager.drawAllItem(g2d);
-        mMagager.drawAllBomb(g2d);
-        mMagager.drawAllBox(g2d);
-        mMagager.drawAllMonster(g2d);
-        mMagager.drawAllShawDow(g2d);
-        mMagager.drawInfo(g2d);
-        mMagager.drawBoss(g2d);
-        if (mMagager.getStatus() == 1) {
-            mMagager.drawDialog(g2d, 1);
-        }
-        if (mMagager.getStatus() == 2) {
-            mMagager.drawDialog(g2d, 2);
-        }
-        if (mMagager.getStatus() == 3) {
-            mMagager.drawDialog(g2d, 3);
-        }
+//        mMagager.draWBackground(g2d);
+//        mMagager.drawAllItem(g2d);
+//        mMagager.drawAllBomb(g2d);
+//        mMagager.drawAllBox(g2d);
+//        mMagager.drawAllMonster(g2d);
+//        mMagager.drawAllShawDow(g2d);
+//        mMagager.drawInfo(g2d);
+//        mMagager.drawBoss(g2d);
+//        if (mMagager.getStatus() == 1) {
+//            mMagager.drawDialog(g2d, 1);
+//        }
+//        if (mMagager.getStatus() == 2) {
+//            mMagager.drawDialog(g2d, 2);
+//        }
+//        if (mMagager.getStatus() == 3) {
+//            mMagager.drawDialog(g2d, 3);
+//        }
     }
 
     private KeyAdapter keyAdapter = new KeyAdapter() {
@@ -88,47 +88,47 @@ public class PlayGame extends JPanel implements Runnable, ActionListener {
             }
 
 
-            mMagager.setRunBomer();
-            mMagager.deadLineAllBomb();
-            mMagager.checkDead();
-            mMagager.checkImpactItem();
-            mMagager.checkWinAndLose();
+//            mMagager.setRunBomer();
+//            mMagager.deadLineAllBomb();
+//            mMagager.checkDead();
+//            mMagager.checkImpactItem();
+//            mMagager.checkWinAndLose();
 
-            if (mMagager.getStatus() == 1) {
-                timeLose++;
-                if (timeLose == 3000) {
-                    mMagager.innitManager();
-                    mContainer.setShowMenu();
-                    timeLose = 0;
-                }
-            }
+//            if (mMagager.getStatus() == 1) {
+//                timeLose++;
+//                if (timeLose == 3000) {
+//                    mMagager.innitManager();
+//                    mContainer.setShowMenu();
+//                    timeLose = 0;
+//                }
+//            }
 
-            if (mMagager.getStatus() == 2) {
-                timeNext++;
-                if (timeNext == 3000) {
-                    mMagager.innitManager();
-                    timeNext = 0;
-                }
-            }
+//            if (mMagager.getStatus() == 2) {
+//                timeNext++;
+//                if (timeNext == 3000) {
+//                    mMagager.innitManager();
+//                    timeNext = 0;
+//                }
+//            }
 
-            if (mMagager.getStatus() == 3) {
-                timeNext++;
-                if (timeNext == 3000) {
-                    mMagager.innitManager();
-                    mContainer.setShowMenu();
-                    timeNext = 0;
-                }
-            }
+//            if (mMagager.getStatus() == 3) {
+//                timeNext++;
+//                if (timeNext == 3000) {
+//                    mMagager.innitManager();
+//                    mContainer.setShowMenu();
+//                    timeNext = 0;
+//                }
+//            }
 
 
             if (move == 0) {
-                mMagager.changeOrientAll();
+//                mMagager.changeOrientAll();
                 move = 5000;
             }
             if (move > 0) {
                 move--;
             }
-            mMagager.moveAllMonster(count);
+//            mMagager.moveAllMonster(count);
             repaint();
             count++;
             if (count == 1000000) {
@@ -141,8 +141,8 @@ public class PlayGame extends JPanel implements Runnable, ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == btn_Menu) {
-            mMagager.setRound(1);
-            mMagager.innitManager();
+//            mMagager.setRound(1);
+//            mMagager.innitManager();
             mContainer.setShowMenu();
         }
 
