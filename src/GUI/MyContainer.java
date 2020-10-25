@@ -39,7 +39,7 @@ public class MyContainer extends JPanel{
 
     public void setShowPlay(){
         mCardLayout.show(MyContainer.this, TAG_PLAYGAME);
-
+        mPlayGame.requestFocus();
     }
 
 }
