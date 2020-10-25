@@ -1,5 +1,8 @@
 package GUI;
 
+import GameObjects.Manager;
+import GameObjects.Bomber;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -13,6 +16,7 @@ public class PlayGame extends JPanel implements Runnable, ActionListener {
     public static boolean IS_RUNNING = true;
     private MyContainer mContainer;
     private BitSet traceKey = new BitSet();
+    private Manager mMagager = new Manager();
     private int count = 0;
     private int deadlineBomb = 0;
     private int move = 0;
@@ -46,15 +50,15 @@ public class PlayGame extends JPanel implements Runnable, ActionListener {
         Graphics2D g2d = (Graphics2D) g;
         g2d.setStroke(new java.awt.BasicStroke(2));
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        
-        mMagager.draWBackground(g2d);
-        mMagager.drawAllItem(g2d);
-        mMagager.drawAllBomb(g2d);
-        mMagager.drawAllBox(g2d);
-        mMagager.drawAllMonster(g2d);
-        mMagager.drawAllShawDow(g2d);
-        mMagager.drawInfo(g2d);
-        mMagager.drawBoss(g2d);
+        mMagager.getmBomber().drawActor(g2d);
+//        mMagager.draWBackground(g2d);
+//        mMagager.drawAllItem(g2d);
+//        mMagager.drawAllBomb(g2d);
+//        mMagager.drawAllBox(g2d);
+//        mMagager.drawAllMonster(g2d);
+//        mMagager.drawAllShawDow(g2d);
+//        mMagager.drawInfo(g2d);
+//        mMagager.drawBoss(g2d);
         if (mMagager.getStatus() == 1) {
             mMagager.drawDialog(g2d, 1);
         }
@@ -87,13 +91,35 @@ public class PlayGame extends JPanel implements Runnable, ActionListener {
                 e.printStackTrace();
             }
 
+            if (traceKey.get(KeyEvent.VK_LEFT)) {
+                mMagager.getmBomber().changeOrient(Bomber.LEFT);
+//                mMagager.getmBomber().move(count, mMagager.getArrBomb(), mMagager.getArrBox());
+                mMagager.getmBomber().move(count);
+
+            }
+            if (traceKey.get(KeyEvent.VK_RIGHT)) {
+                mMagager.getmBomber().changeOrient(Bomber.RIGHT);
+//                mMagager.getmBomber().move(count, mMagager.getArrBomb(), mMagager.getArrBox());
+                mMagager.getmBomber().move(count);
+            }
+            if (traceKey.get(KeyEvent.VK_UP)) {
+                mMagager.getmBomber().changeOrient(Bomber.UP);
+//                mMagager.getmBomber().move(count, mMagager.getArrBomb(), mMagager.getArrBox());
+                mMagager.getmBomber().move(count);
+
+            }
+            if (traceKey.get(KeyEvent.VK_DOWN)) {
+                mMagager.getmBomber().changeOrient(Bomber.DOWN);
+//                mMagager.getmBomber().move(count, mMagager.getArrBomb(), mMagager.getArrBox());
+                mMagager.getmBomber().move(count);
+            }
 
             mMagager.setRunBomer();
             mMagager.deadLineAllBomb();
             mMagager.checkDead();
             mMagager.checkImpactItem();
             mMagager.checkWinAndLose();
-
+//
             if (mMagager.getStatus() == 1) {
                 timeLose++;
                 if (timeLose == 3000) {
@@ -110,7 +136,7 @@ public class PlayGame extends JPanel implements Runnable, ActionListener {
                     timeNext = 0;
                 }
             }
-
+//
             if (mMagager.getStatus() == 3) {
                 timeNext++;
                 if (timeNext == 3000) {
@@ -121,14 +147,14 @@ public class PlayGame extends JPanel implements Runnable, ActionListener {
             }
 
 
-            if (move == 0) {
-                mMagager.changeOrientAll();
-                move = 5000;
-            }
-            if (move > 0) {
-                move--;
-            }
-            mMagager.moveAllMonster(count);
+//            if (move == 0) {
+//                mMagager.changeOrientAll();
+//                move = 5000;
+//            }
+//            if (move > 0) {
+//                move--;
+//            }
+//            mMagager.moveAllMonster(count);
             repaint();
             count++;
             if (count == 1000000) {
