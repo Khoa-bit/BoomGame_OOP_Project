@@ -8,7 +8,6 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.BitSet;
 
-
 public class PlayGame extends JPanel implements Runnable, ActionListener {
     public static boolean IS_RUNNING = true;
     private MyContainer mContainer;
@@ -46,7 +45,6 @@ public class PlayGame extends JPanel implements Runnable, ActionListener {
         Graphics2D g2d = (Graphics2D) g;
         g2d.setStroke(new java.awt.BasicStroke(2));
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        
         mMagager.draWBackground(g2d);
         mMagager.drawAllItem(g2d);
         mMagager.drawAllBomb(g2d);
@@ -87,7 +85,6 @@ public class PlayGame extends JPanel implements Runnable, ActionListener {
                 e.printStackTrace();
             }
 
-
             mMagager.setRunBomer();
             mMagager.deadLineAllBomb();
             mMagager.checkDead();
@@ -120,7 +117,6 @@ public class PlayGame extends JPanel implements Runnable, ActionListener {
                 }
             }
 
-
             if (move == 0) {
                 mMagager.changeOrientAll();
                 move = 5000;
@@ -135,7 +131,6 @@ public class PlayGame extends JPanel implements Runnable, ActionListener {
                 count = 0;
             }
         }
-
     }
 
     @Override

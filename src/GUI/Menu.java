@@ -11,7 +11,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-
 public class Menu extends JPanel{
     private int padding = 15;
     private GUI mGui;
@@ -33,10 +32,8 @@ public class Menu extends JPanel{
         lbExit = setLabel(lbPlayGame.getX(),lbPlayGame.getY() + lbPlayGame.getHeight()+padding, "/Images/Exit.png");
         lbPlayGame.addMouseListener(mMouseAdapter);
         lbExit.addMouseListener(mMouseAdapter);
-
         add(lbPlayGame);
         add(lbExit);
-
     }
 
     public void initbackground(){
@@ -90,5 +87,4 @@ public class Menu extends JPanel{
             }
         }
     };
-
 }
