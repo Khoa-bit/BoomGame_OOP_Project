@@ -20,7 +20,6 @@ public class GUI extends JFrame {
         WindowAdapter mwindow = new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-
                 PlayGame.IS_RUNNING = false;
             }
         };

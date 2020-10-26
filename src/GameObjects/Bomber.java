@@ -8,10 +8,8 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
-import GUI.GUI;
 
-
-public class Bomber extends Entity {
+public class Bomber extends Actor{
     public static int ALLOW_RUN=0;
     public static int DISALLOW_RUN=1;
     protected int sizeBomb,quantityBomb,status,score,heart;
@@ -29,7 +27,7 @@ public class Bomber extends Entity {
         this.quantityBomb = quantityBomb;
         this.heart = 3;
         this.score=0;
-        this.status = Entity.ALIVE;
+        this.status = Actor.ALIVE;
         this.img = new ImageIcon(getClass().getResource("/Images/bomber_down.png")).getImage();
         width = img.getWidth(null);
         height = img.getHeight(null)-20;
@@ -92,23 +90,13 @@ public class Bomber extends Entity {
         return heart;
     }
 
-    public void setHeart(int heart) {
-        this.heart = heart;
-    }
-
     @Override
-    public boolean move(int count) {
-        if(status==DEAD){
-            return false;
-        }
-        return super.move(count);
+    public boolean move(int count, ArrayList<Bomb> arrBomb) {
+        return super.move(count, arrBomb);
     }
 
     @Override
     public void changeOrient(int orient) {
-        if(this.status==DEAD){
-            return;
-        }
         super.changeOrient(orient);
         switch (orient) {
             case LEFT:
