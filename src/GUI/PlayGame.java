@@ -135,13 +135,13 @@ public class PlayGame extends JPanel implements Runnable, ActionListener {
 
 
             if (move == 0) {
-                mMagager.changeOrientAll();
+//                mMagager.changeOrientAll();
                 move = 5000;
             }
             if (move > 0) {
                 move--;
             }
-            mMagager.moveAllMonster(count);
+//            mMagager.moveAllMonster(count);
             repaint();
             count++;
             if (count == 1000000) {
@@ -153,8 +153,8 @@ public class PlayGame extends JPanel implements Runnable, ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == btn_Menu) {
-            mMagager.setRound(1);
-            mMagager.innitManager();
+//            mMagager.setRound(1);
+//            mMagager.innitManager();
             mContainer.setShowMenu();
         }
 
