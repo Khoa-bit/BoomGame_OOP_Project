@@ -20,6 +20,12 @@ public class BombBang {
         img_right = new ImageIcon(getClass().getResource("/Images/bombbang_right_1.png")).getImage();
         img_up = new ImageIcon(getClass().getResource("/Images/bombbang_up_1.png")).getImage();
         img_down = new ImageIcon(getClass().getResource("/Images/bombbang_down_1.png")).getImage();
+        for(int i=1;i<size;i++){
+            setImage(Actor.LEFT, i+1);
+            setImage(Actor.RIGHT, i+1);
+            setImage(Actor.UP, i+1);
+            setImage(Actor.DOWN, i+1);
+        }
     }
 
     public void drawBongBang(Graphics2D g2d){
@@ -27,6 +33,33 @@ public class BombBang {
         g2d.drawImage(img_right, x, y,null);
         g2d.drawImage(img_up, x, y+45-img_up.getHeight(null),null);
         g2d.drawImage(img_down, x, y,null);
+    }
+
+    public void setImage(int orient, int size){
+        switch (orient) {
+            case Bomber.LEFT:
+                if(size==2){
+                    img_left = new ImageIcon(getClass().getResource("/Images/bombbang_left_2.png")).getImage();
+                }
+                break;
+            case Bomber.RIGHT:
+                if(size==2){
+                    img_right = new ImageIcon(getClass().getResource("/Images/bombbang_right_2.png")).getImage();
+                }
+                break;
+            case Bomber.UP:
+                if(size==2){
+                    img_up = new ImageIcon(getClass().getResource("/Images/bombbang_up_2.png")).getImage();
+                }
+                break;
+            case Bomber.DOWN:
+                if(size==2){
+                    img_down = new ImageIcon(getClass().getResource("/Images/bombbang_down_2.png")).getImage();
+                }
+                break;
+            default:
+                break;
+        }
     }
 
     public boolean isImpactBombBangvsBomb(Bomb bomb){

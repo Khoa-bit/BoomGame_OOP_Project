@@ -25,7 +25,7 @@ public class Manager {
     public void innitManager() {
         switch (round) {
             case 1:
-                mBomber = new Bomber(0, 540, Actor.BOMBER, Actor.DOWN, 5, 1, 1);
+                mBomber = new Bomber(0, 540, Actor.BOMBER, Actor.DOWN, 5, 5, 5);
                 innit();
                 nextRound = 0;
                 status = 0;
@@ -38,15 +38,13 @@ public class Manager {
     }
 
     public void innit() {
-        arrBox = new ArrayList<Box>();
-        arrShawDow = new ArrayList<Box>();
         arrBomb = new ArrayList<Bomb>();
         arrBombBang = new ArrayList<BombBang>();
     }
 
     public void innitBomb() {
         int x = mBomber.getX() + mBomber.getWidth() / 2;
-        int y = mBomber.getY() + mBomber.getHeart() / 2;
+        int y = mBomber.getY() + mBomber.getHeight() / 2;
         for (int i = 0; i < arrBomb.size(); i++) {
             if (arrBomb.get(i).isImpact(x, y)) {
                 return;
