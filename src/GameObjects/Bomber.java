@@ -97,12 +97,10 @@ public class Bomber extends Entity {
     }
 
     @Override
-//    public boolean move(int count, ArrayList<Bomb> arrBomb, ArrayList<Box> arrBox) {
     public boolean move(int count) {
         if(status==DEAD){
             return false;
         }
-//        return super.move(count, arrBomb, arrBox);
         return super.move(count);
     }
 
@@ -129,15 +127,5 @@ public class Bomber extends Entity {
                 break;
         }
     }
-
-    public boolean isImpactBomberVsActor(Entity entity){
-        if(status==DEAD){
-            return false;
-        }
-        Rectangle rec1 = new Rectangle(x, y, width, height);
-        Rectangle rec2 = new Rectangle(entity.getX(), entity.getY(), entity.getWidth(), entity.getHeight());
-        return rec1.intersects(rec2);
-    }
-
 }
 
