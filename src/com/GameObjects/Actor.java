@@ -1,6 +1,6 @@
-package GameObjects;
+package com.GameObjects;
 
-import GUI.GUI;
+import com.GUI.GUI;
 import java.awt.*;
 import java.util.ArrayList;
 

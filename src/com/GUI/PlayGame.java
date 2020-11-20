@@ -1,7 +1,7 @@
-package GUI;
+package com.GUI;
 
-import GameObjects.Manager;
-import GameObjects.Bomber;
+import com.GameObjects.Manager;
+import com.GameObjects.Bomber;
 
 import javax.swing.*;
 import java.awt.*;

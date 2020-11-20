@@ -1,4 +1,4 @@
-package GameObjects;
+package com.GameObjects;
 
 //import sound.GameSound;
 

@@ -1,7 +1,5 @@
-package GameObjects;
+package com.GameObjects;
 
-import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.Rectangle;
 
 import javax.swing.ImageIcon;
