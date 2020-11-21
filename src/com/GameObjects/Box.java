@@ -4,14 +4,15 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Box {
-    private final int x,y,width,height,type;
+    private final int x,y,width,height;
+    private final boolean destroyable;
     private final Image img;
-    public Box(int x, int y, int type,String images) {
+    public Box(int x, int y, boolean destroyable, String pathImage) {
         super();
         this.x = x;
         this.y = y;
-        this.type = type;
-        this.img = new ImageIcon(getClass().getResource(images)).getImage();
+        this.destroyable = destroyable;
+        this.img = new ImageIcon(getClass().getResource(pathImage)).getImage();
         this.width = img.getWidth(null);
         this.height = img.getHeight(null);
     }
@@ -21,8 +22,8 @@ public class Box {
 
     }
 
-    public int getType() {
-        return type;
+    public boolean isDestroyable() {
+        return destroyable;
     }
 
     public int getX() {
