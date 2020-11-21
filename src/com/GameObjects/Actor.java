@@ -44,7 +44,7 @@ public class Actor {
                 x = x - 1;
                 break;
             case RIGHT:
-                if (x > (675 - width)) {
+                if (x > (GUI.WIDTHPLAY - width)) {
                     return false;
                 }
                 x = x + 1;
@@ -56,7 +56,7 @@ public class Actor {
                 y = y - 1;
                 break;
             case DOWN:
-                if (y >= (GUI.HEIGHTJF - 25 - height)) {
+                if (y >= (GUI.HEIGHTPLAY - height)) {
                     return false;
                 }
                 y = y + 1;

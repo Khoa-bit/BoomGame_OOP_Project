@@ -8,6 +8,10 @@ import java.awt.event.WindowEvent;
 public class GUI extends JFrame {
     public static final int WIDTHJF = 905;
     public static final int HEIGHTJF = 610;
+//    15 x 13 grid
+    public static final int WIDTHPLAY = 675;
+    public static final int HEIGHTPLAY = 585;
+    public static final int TILES = 45;
 
     public GUI() {
         this.setSize(WIDTHJF, HEIGHTJF);
