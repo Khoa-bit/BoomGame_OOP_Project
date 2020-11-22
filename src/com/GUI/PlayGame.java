@@ -51,6 +51,8 @@ public class PlayGame extends JPanel implements Runnable, ActionListener {
         g2d.setStroke(new java.awt.BasicStroke(2));
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         mMagager.drawAllBomb(g2d);
+        mMagager.drawAllBox(g2d);
+        mMagager.drawAllShawDow(g2d);
         mMagager.getmBomber().drawActor(g2d);
         if (mMagager.getStatus() == 1) {
             mMagager.drawDialog(g2d, 1);

@@ -2,8 +2,12 @@ package com.GameObjects;
 
 //import sound.GameSound;
 
-import javax.swing.*;
+import com.GUI.GUI;
+
 import java.awt.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -26,7 +30,7 @@ public class Manager {
         switch (round) {
             case 1:
                 mBomber = new Bomber(0, 540, Actor.BOMBER, Actor.DOWN, 5, 5, 5);
-                innit();
+                innit("src/Map1/BOX.txt", "src/Map1/SHADOW.txt");
                 nextRound = 0;
                 status = 0;
                 break;
@@ -37,9 +41,58 @@ public class Manager {
 
     }
 
-    public void innit() {
-        arrBomb = new ArrayList<Bomb>();
-        arrBombBang = new ArrayList<BombBang>();
+    public void innit(String pathBox, String pathShadow) {
+        arrBox = new ArrayList<>();
+        arrShawDow = new ArrayList<>();
+        arrBomb = new ArrayList<>();
+        arrBombBang = new ArrayList<>();
+
+        innitArrBox(pathBox);
+        innitArrShadow(pathShadow);
+    }
+
+    public void innitArrBox(String pathBox) {
+        try {
+            FileReader file = new FileReader(pathBox);
+            BufferedReader input = new BufferedReader(file);
+            String line;
+            while ((line = input.readLine()) != null) {
+                String[] str = line.split(":");
+                int x = Integer.parseInt(str[0]) * GUI.TILES;
+                int y = Integer.parseInt(str[1]) * GUI.TILES;
+                boolean destroyable = Boolean.parseBoolean(str[2]);
+                String pathImage = str[3];
+                Box box = new Box(x, y, destroyable, pathImage);
+                arrBox.add(box);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void innitArrShadow(String pathShadow) {
+        try {
+            FileReader file = new FileReader(pathShadow);
+            BufferedReader input = new BufferedReader(file);
+            String line;
+            while ((line = input.readLine()) != null) {
+                String[] str = line.split(":");
+                int x = Integer.parseInt(str[0]) * GUI.TILES;
+                int y = Integer.parseInt(str[1]) * GUI.TILES;
+                boolean destroyable = Boolean.parseBoolean(str[2]);
+                String pathImage = str[3];
+                if (pathImage.equals("/Images/shawdow1.png")) {
+                    y += 23;
+                }
+                else if (pathImage.equals("/Images/shawdow2.png")) {
+                    y += 38;
+                }
+                Box box = new Box(x, y, destroyable, pathImage);
+                arrBox.add(box);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void innitBomb() {
@@ -78,6 +131,18 @@ public class Manager {
         }
         for (int i = 0; i < arrBombBang.size(); i++) {
             arrBombBang.get(i).drawBongBang(g2d);
+        }
+    }
+
+    public void drawAllBox(Graphics2D g2d) {
+        for (Box box : arrBox) {
+            box.drawBox(g2d);
+        }
+    }
+
+    public void drawAllShawDow(Graphics2D g2d) {
+        for (Box box : arrShawDow) {
+            box.drawBox(g2d);
         }
     }
 
