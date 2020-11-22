@@ -15,7 +15,7 @@ public class Manager {
     private Random random = new Random();
     private Bomber mBomber;
     private ArrayList<Box> arrBox;
-    private ArrayList<Box> arrShawDow;
+    private ArrayList<Box> arrShadow;
     private ArrayList<Bomb> arrBomb;
     private ArrayList<BombBang> arrBombBang;
     private int round=1;
@@ -29,7 +29,7 @@ public class Manager {
     public void innitManager() {
         switch (round) {
             case 1:
-                mBomber = new Bomber(0, 540, Actor.BOMBER, Actor.DOWN, 5, 5, 5);
+                mBomber = new Bomber(0, 540, Actor.BOMBER, Actor.DOWN, 5, 2, 5);
                 innit("src/Map1/BOX.txt", "src/Map1/SHADOW.txt");
                 nextRound = 0;
                 status = 0;
@@ -43,7 +43,7 @@ public class Manager {
 
     public void innit(String pathBox, String pathShadow) {
         arrBox = new ArrayList<>();
-        arrShawDow = new ArrayList<>();
+        arrShadow = new ArrayList<>();
         arrBomb = new ArrayList<>();
         arrBombBang = new ArrayList<>();
 
@@ -60,9 +60,9 @@ public class Manager {
                 String[] str = line.split(":");
                 int x = Integer.parseInt(str[0]) * GUI.TILES;
                 int y = Integer.parseInt(str[1]) * GUI.TILES;
-                boolean destroyable = Boolean.parseBoolean(str[2]);
+                boolean destructible = Boolean.parseBoolean(str[2]);
                 String pathImage = str[3];
-                Box box = new Box(x, y, destroyable, pathImage);
+                Box box = new Box(x, y, destructible, pathImage);
                 arrBox.add(box);
             }
         } catch (IOException e) {
@@ -79,7 +79,7 @@ public class Manager {
                 String[] str = line.split(":");
                 int x = Integer.parseInt(str[0]) * GUI.TILES;
                 int y = Integer.parseInt(str[1]) * GUI.TILES;
-                boolean destroyable = Boolean.parseBoolean(str[2]);
+                boolean destructible = Boolean.parseBoolean(str[2]);
                 String pathImage = str[3];
                 if (pathImage.equals("/Images/shawdow1.png")) {
                     y += 23;
@@ -87,8 +87,8 @@ public class Manager {
                 else if (pathImage.equals("/Images/shawdow2.png")) {
                     y += 38;
                 }
-                Box box = new Box(x, y, destroyable, pathImage);
-                arrBox.add(box);
+                Box shadow = new Box(x, y, destructible, pathImage);
+                arrShadow.add(shadow);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -141,8 +141,8 @@ public class Manager {
     }
 
     public void drawAllShawDow(Graphics2D g2d) {
-        for (Box box : arrShawDow) {
-            box.drawBox(g2d);
+        for (Box shadow : arrShadow) {
+            shadow.drawBox(g2d);
         }
     }
 
@@ -150,7 +150,7 @@ public class Manager {
         for (int i = 0; i < arrBomb.size(); i++) {
             arrBomb.get(i).deadlineBomb();
             if (arrBomb.get(i).getTimeline() == 250) {
-                BombBang bomBang = new BombBang(arrBomb.get(i).getX(), arrBomb.get(i).getY(), arrBomb.get(i).getSize());
+                BombBang bomBang = new BombBang(arrBomb.get(i).getX(), arrBomb.get(i).getY(), arrBomb.get(i).getSize(), arrBox);
                 arrBombBang.add(bomBang);
                 arrBomb.remove(i);
             }
@@ -159,16 +159,26 @@ public class Manager {
         for (int i = 0; i < arrBombBang.size(); i++) {
             for (int j = 0; j < arrBomb.size(); j++) {
                 if (arrBombBang.get(i).isImpactBombBangvsBomb(arrBomb.get(j))) {
-                    BombBang bomBang = new BombBang(arrBomb.get(j).getX(), arrBomb.get(j).getY(), arrBomb.get(j).getSize());
+                    BombBang bomBang = new BombBang(arrBomb.get(j).getX(), arrBomb.get(j).getY(), arrBomb.get(j).getSize(), arrBox);
                     arrBombBang.add(bomBang);
                     arrBomb.remove(j);
                 }
             }
         }
+
         for (int k = 0; k < arrBombBang.size(); k++) {
             arrBombBang.get(k).deadlineBomb();
             if (arrBombBang.get(k).getTimeLine() == 0) {
                 arrBombBang.remove(k);
+            }
+        }
+
+        for (int i = 0; i < arrBombBang.size(); i++) {
+            for (int j = 0; j < arrBox.size(); j++) {
+                if (arrBombBang.get(i).isImpactBombBangvsBox(arrBox.get(j))) {
+                    arrBox.remove(j);
+                    arrShadow.remove(j);
+                }
             }
         }
     }
