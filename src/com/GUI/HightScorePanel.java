@@ -63,7 +63,7 @@ public class HightScorePanel extends JPanel implements ActionListener{
 		g2d.setFont(new Font("Arial", Font.BOLD, 30));
 		g2d.setColor(Color.RED);	
 		g2d.drawRect(250, 50, 400, 450);
-		g2d.setColor(Color.WHITE);
+		g2d.setColor(Color.BLACK);
 		int y=100;
 		for(int i=0;i<arrHightScore.size();i++){
 			g2d.drawString(""+(i+1), 270, y);
