@@ -7,11 +7,13 @@ public class MyContainer extends JPanel{
     private static final String TAG_MENU = "tag_menu";
     private static final String TAG_PLAYGAME = "tag_playgame";
     private static final String TAG_OPTION = "tag_option";
+    private static final String TAG_HIGHTSCORE = "tag_hightscore";
     private CardLayout mCardLayout;
     private GUI gui;
     private Menu mMenu;
     private Option mOption;
     private PlayGame mPlayGame;
+    private HightScorePanel mHightScorePanel;
 
     public MyContainer(GUI mGui){
         this.gui = mGui;
@@ -24,6 +26,9 @@ public class MyContainer extends JPanel{
         add(mPlayGame, TAG_PLAYGAME);
         mOption = new Option(this);
         add(mOption, TAG_OPTION);
+        mHightScorePanel = new HightScorePanel(this);
+		add(mHightScorePanel, TAG_HIGHTSCORE);
+
         setShowMenu();
     }
 
@@ -45,4 +50,10 @@ public class MyContainer extends JPanel{
         mCardLayout.show(MyContainer.this, TAG_PLAYGAME);
         mPlayGame.requestFocus();
     }
+
+    public void setShowHightScore(){
+		mCardLayout.show(MyContainer.this, TAG_HIGHTSCORE);
+		mHightScorePanel.requestFocus();
+	}
+	
 }
