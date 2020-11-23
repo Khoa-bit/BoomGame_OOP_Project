@@ -43,6 +43,13 @@ public class Actor {
                 }
                 x = x - 1;
 
+                for (Bomb bomb : arrBomb) {
+                    if (bomb.isImpactBombvsActor(this) == 1) {
+                        x = x + 1;
+                        return false;
+                    }
+                }
+
                 for (Box box : arrBox) {
                     int kq = box.isImpactBoxVsActor(this);
                     if (kq != 0) {
@@ -64,6 +71,13 @@ public class Actor {
                     return false;
                 }
                 x = x + 1;
+
+                for (Bomb bomb : arrBomb) {
+                    if (bomb.isImpactBombvsActor(this) == 1) {
+                        x = x - 1;
+                        return false;
+                    }
+                }
 
                 for (Box box : arrBox) {
                     int kq = box.isImpactBoxVsActor(this);
@@ -87,6 +101,13 @@ public class Actor {
                 }
                 y = y - 1;
 
+                for (Bomb bomb : arrBomb) {
+                    if (bomb.isImpactBombvsActor(this) == 1) {
+                        y = y + 1;
+                        return false;
+                    }
+                }
+
                 for (Box box : arrBox) {
                     int kq = box.isImpactBoxVsActor(this);
                     if (kq != 0) {
@@ -108,6 +129,13 @@ public class Actor {
                     return false;
                 }
                 y = y + 1;
+
+                for (Bomb bomb : arrBomb) {
+                    if (bomb.isImpactBombvsActor(this) == 1) {
+                        y = y - 1;
+                        return false;
+                    }
+                }
 
                 for (Box box : arrBox) {
                     int kq = box.isImpactBoxVsActor(this);

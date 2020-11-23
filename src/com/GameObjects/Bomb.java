@@ -66,4 +66,16 @@ public class Bomb extends Actor{
         Rectangle rec2 = new Rectangle(xNewBomb, yNewBomb, GUI.TILES, GUI.TILES);
         return rec1.intersects(rec2);
     }
+
+    public int isImpactBombvsActor(Actor actor){
+        if(actor.getRunBomb()==Bomber.ALLOW_RUN) {
+            return 0;
+        }
+        Rectangle rec2 = new Rectangle(x, y, 45, 45);
+        Rectangle rec3 = new Rectangle(actor.getX(), actor.getY(), actor.getWidth(), actor.getHeight());
+        if(rec2.intersects(rec3)){
+            return 1;
+        }
+        return 0;
+    }
 }
