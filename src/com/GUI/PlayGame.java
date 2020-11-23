@@ -52,8 +52,8 @@ public class PlayGame extends JPanel implements Runnable, ActionListener {
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         mMagager.drawAllBomb(g2d);
         mMagager.drawAllBox(g2d);
-        mMagager.drawAllShawDow(g2d);
         mMagager.getmBomber().drawActor(g2d);
+        mMagager.drawAllShawDow(g2d);
         if (mMagager.getStatus() == 1) {
             mMagager.drawDialog(g2d, 1);
         }
@@ -88,21 +88,21 @@ public class PlayGame extends JPanel implements Runnable, ActionListener {
 
             if (traceKey.get(KeyEvent.VK_LEFT)) {
                 mMagager.getmBomber().changeOrient(Bomber.LEFT);
-                mMagager.getmBomber().move(count, mMagager.getArrBomb());
+                mMagager.getmBomber().move(count, mMagager.getArrBomb(), mMagager.getArrBox());
 
             }
             if (traceKey.get(KeyEvent.VK_RIGHT)) {
                 mMagager.getmBomber().changeOrient(Bomber.RIGHT);
-                mMagager.getmBomber().move(count, mMagager.getArrBomb());
+                mMagager.getmBomber().move(count, mMagager.getArrBomb(), mMagager.getArrBox());
             }
             if (traceKey.get(KeyEvent.VK_UP)) {
                 mMagager.getmBomber().changeOrient(Bomber.UP);
-                mMagager.getmBomber().move(count, mMagager.getArrBomb());
+                mMagager.getmBomber().move(count, mMagager.getArrBomb(), mMagager.getArrBox());
 
             }
             if (traceKey.get(KeyEvent.VK_DOWN)) {
                 mMagager.getmBomber().changeOrient(Bomber.DOWN);
-                mMagager.getmBomber().move(count, mMagager.getArrBomb());
+                mMagager.getmBomber().move(count, mMagager.getArrBomb(), mMagager.getArrBox());
             }
             if (traceKey.get(KeyEvent.VK_SPACE)) {
                 mMagager.innitBomb();
