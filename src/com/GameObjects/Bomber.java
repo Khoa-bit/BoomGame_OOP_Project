@@ -89,8 +89,8 @@ public class Bomber extends Actor{
     }
 
     @Override
-    public boolean move(int count, ArrayList<Bomb> arrBomb) {
-        return super.move(count, arrBomb);
+    public boolean move(int count, ArrayList<Bomb> arrBomb, ArrayList<Box> arrBox) {
+        return super.move(count, arrBomb, arrBox);
     }
 
     @Override
