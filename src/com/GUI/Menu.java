@@ -29,8 +29,8 @@ public class Menu extends JPanel{
     public void initComps(GUI mGui){
         lbPlayGame = setLabel((mGui.getWidth()-150)/2-30, (mGui.getHeight()-30)/2-150, "/Images/Play.png");
         lbOption = setLabel(lbPlayGame.getX(),lbPlayGame.getY() + lbPlayGame.getHeight()+padding, "/Images/Option.png");
-        lbHigthScore = setLabel(lbOption.getX(),lbOption.getY() + lbOption.getHeight()+padding, "/Images/HightScore.png");
-        lbExit = setLabel(lbOption.getX(),lbOption.getY() + lbPlayGame.getHeight()+padding, "/Images/Exit.png");
+        lbHigthScore = setLabel(lbOption.getX(),lbOption.getY() + lbPlayGame.getHeight()+padding, "/Images/HightScore.png");
+        lbExit = setLabel(lbHigthScore.getX(),lbHigthScore.getY() + lbPlayGame.getHeight()+padding, "/Images/Exit.png");
 
         lbPlayGame.addMouseListener(mMouseAdapter);
         lbOption.addMouseListener(mMouseAdapter);
