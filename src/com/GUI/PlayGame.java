@@ -2,6 +2,7 @@ package com.GUI;
 
 import com.GameObjects.Manager;
 import com.GameObjects.Bomber;
+import com.GameObjects.Manager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,6 +12,11 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.BitSet;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 public class PlayGame extends JPanel implements Runnable, ActionListener {
     public static boolean IS_RUNNING = true;
@@ -52,6 +58,7 @@ public class PlayGame extends JPanel implements Runnable, ActionListener {
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         mMagager.drawAllBomb(g2d);
         mMagager.drawAllBox(g2d);
+        mMagager.drawAllMonster(g2d);
         mMagager.getmBomber().drawActor(g2d);
         mMagager.drawAllShawDow(g2d);
         if (mMagager.getStatus() == 1) {
@@ -138,10 +145,18 @@ public class PlayGame extends JPanel implements Runnable, ActionListener {
                 }
             }
 
-            repaint();
-            count++;
-            if (count == 1000000) {
-                count = 0;
+            if(move==0){
+				mMagager.changeOrientAll();
+				move=5000;
+			}
+			if(move>0){
+				move--;
+			}
+			mMagager.moveAllMonster(count);
+			repaint();
+			count++;
+			if(count==1000000){
+				count=0;
             }
         }
 

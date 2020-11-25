@@ -5,11 +5,25 @@ package com.GameObjects;
 import com.GUI.GUI;
 
 import java.awt.*;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.RenderingHints;
 import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Random;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 public class Manager {
     private Random random = new Random();
@@ -18,6 +32,7 @@ public class Manager {
     private ArrayList<Box> arrShadow;
     private ArrayList<Bomb> arrBomb;
     private ArrayList<BombBang> arrBombBang;
+    private ArrayList<Monster> arrMonster;
     private int round=1;
     private int nextRound = 0;
     private int status = 0;
@@ -30,7 +45,7 @@ public class Manager {
         switch (round) {
             case 1:
                 mBomber = new Bomber(0, 540, Actor.BOMBER, Actor.DOWN, 5, 2, 5);
-                innit("src/Map1/BOX.txt", "src/Map1/SHADOW.txt");
+                innit("src/Map1/BOX.txt", "src/Map1/SHADOW.txt","src/Map1/MONSTER.txt");
                 nextRound = 0;
                 status = 0;
                 break;
@@ -41,14 +56,16 @@ public class Manager {
 
     }
 
-    public void innit(String pathBox, String pathShadow) {
+    public void innit(String pathBox, String pathShadow, String pathMonster) {
         arrBox = new ArrayList<>();
         arrShadow = new ArrayList<>();
         arrBomb = new ArrayList<>();
         arrBombBang = new ArrayList<>();
+        arrMonster = new ArrayList<Monster>();
 
         innitArrBox(pathBox);
         innitArrShadow(pathShadow);
+        initarrMonster(pathMonster);
     }
 
     public void innitArrBox(String pathBox) {
@@ -69,7 +86,30 @@ public class Manager {
             e.printStackTrace();
         }
     }
-
+    public void initarrMonster(String path) {
+		try {
+			FileReader file = new FileReader(path);
+			BufferedReader input = new BufferedReader(file);
+			String line;
+			while ((line = input.readLine()) != null) {
+				String str[] = line.split(":");
+				int x = Integer.parseInt(str[0]);
+				int y = Integer.parseInt(str[1]);
+				int type = Integer.parseInt(str[2]);
+				int orient = Integer.parseInt(str[3]);
+				int speed = Integer.parseInt(str[4]);
+				int heart = Integer.parseInt(str[5]);
+				String images = str[6];
+				Monster monster = new Monster(x, y, type, orient, speed, heart,
+						images);
+				arrMonster.add(monster);
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
     public void innitArrShadow(String pathShadow) {
         try {
             FileReader file = new FileReader(pathShadow);
@@ -116,7 +156,8 @@ public class Manager {
         g2d.setColor(Color.RED);
         if(type==1){
             g2d.drawString("You Lose !!!", 200, 250);
-        }else{
+        }
+        else{
             if(type==2){
                 g2d.drawString("Round "+round, 200, 250);
             }else{
@@ -133,6 +174,11 @@ public class Manager {
             arrBombBang.get(i).drawBongBang(g2d);
         }
     }
+    public void drawAllMonster(Graphics2D g2d) {
+		for (int i = 0; i < arrMonster.size(); i++) {
+			arrMonster.get(i).drawActor(g2d);
+		}
+	}
 
     public void drawAllBox(Graphics2D g2d) {
         for (Box box : arrBox) {
@@ -192,10 +238,20 @@ public class Manager {
     }
 
     public void changeOrientAll() {
-    }
+		for (int i = 0; i < arrMonster.size(); i++) {
+			int orient = random.nextInt(4) + 1;
+			arrMonster.get(i).changeOrient(orient);
+		}
+	}
 
     public void moveAllMonster(int count) {
-    }
+		for (int i = 0; i < arrMonster.size(); i++) {
+			if (arrMonster.get(i).move(count, arrBomb, arrBox) == false) {
+				int orient = random.nextInt(4) + 1;
+				arrMonster.get(i).changeOrient(orient);
+			}
+		}
+	}
 
     public ArrayList<Box> getArrBox() {
         return arrBox;

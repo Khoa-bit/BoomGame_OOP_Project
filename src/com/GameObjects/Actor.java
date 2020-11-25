@@ -12,7 +12,7 @@ public class Actor {
     public static final int ALIVE = 1;
     public static final int BOMBER = 1;
     public static final int BOMB = 4;
-
+    public static final int MONSTER = 2;
 
     protected int x, y, type, orient, speed, width, height, runBomb;
     protected Image img;
@@ -23,6 +23,9 @@ public class Actor {
             case BOMBER:
                 g2d.drawImage(img, x, y - 20, null);
                 break;
+            case MONSTER:
+			    g2d.drawImage(img, x, y-23, null);
+			    break;
             case BOMB:
                 g2d.drawImage(img, x, y, null);
                 break;
