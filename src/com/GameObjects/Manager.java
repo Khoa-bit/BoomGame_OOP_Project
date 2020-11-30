@@ -218,7 +218,20 @@ public class Manager {
                 arrBombBang.remove(k);
             }
         }
-
+        for (int k = 0; k < arrBombBang.size(); k++) {
+			arrBombBang.get(k).deadlineBomb();
+			for (int j = 0; j < arrMonster.size(); j++) {
+                if (arrBombBang.get(k).isImpactBombBangVsActor(
+						arrMonster.get(j))) {
+					if(arrMonster.get(j).getHeart()>1){
+						arrMonster.get(j).setHeart(arrMonster.get(j).getHeart()-1);
+                    }
+                    else{
+						arrMonster.remove(j);
+					}
+				}
+            }
+        }
         for (int i = 0; i < arrBombBang.size(); i++) {
             for (int j = 0; j < arrBox.size(); j++) {
                 if (arrBombBang.get(i).isImpactBombBangvsBox(arrBox.get(j))) {
