@@ -1,7 +1,7 @@
-package com.GUI;
+package GUI;
 
-import com.GameObjects.Manager;
-import com.GameObjects.Bomber;
+import GameObjects.Manager;
+import GameObjects.Bomber;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,7 +10,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.BitSet;
-
 
 public class PlayGame extends JPanel implements Runnable, ActionListener {
     public static boolean IS_RUNNING = true;
@@ -157,4 +156,3 @@ public class PlayGame extends JPanel implements Runnable, ActionListener {
 
     }
 }
-

@@ -1,6 +1,6 @@
-package com.GameObjects;
+package GameObjects;
 
-import com.GUI.GUI;
+import GUI.GUI;
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -13,10 +13,8 @@ public class Actor {
     public static final int BOMBER = 1;
     public static final int BOMB = 4;
 
-
     protected int x, y, type, orient, speed, width, height, runBomb;
     protected Image img;
-
 
     public void drawActor(Graphics2D g2d) {
         switch (type) {
@@ -207,4 +205,3 @@ public class Actor {
         return type;
     }
 }
-

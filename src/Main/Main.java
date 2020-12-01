@@ -1,6 +1,6 @@
-package com.Main;
+package Main;
 
-import com.GUI.GUI;
+import GUI.GUI;
 
 public class Main {
 	public static void main(String[] args) {

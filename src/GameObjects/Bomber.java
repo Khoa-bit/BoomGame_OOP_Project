@@ -1,42 +1,39 @@
-package com.GameObjects;
-
+package GameObjects;
 
 import java.awt.Image;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
-
-public class Bomber extends Actor{
-    public static int ALLOW_RUN=0;
-    public static int DISALLOW_RUN=1;
-    protected int sizeBomb,quantityBomb,status,score,heart;
-
-
+public class Bomber extends Actor {
+    public static int ALLOW_RUN = 0;
+    public static int DISALLOW_RUN = 1;
+    protected int sizeBomb, quantityBomb, status, score, heart;
 
     public Bomber(int x, int y, int type, int orient, int speed, int sizebomb, int quantityBomb) {
         this.x = x;
         this.y = y;
         this.type = type;
-        this.runBomb=DISALLOW_RUN;
+        this.runBomb = DISALLOW_RUN;
         this.orient = orient;
         this.speed = speed;
         this.sizeBomb = sizebomb;
         this.quantityBomb = quantityBomb;
         this.heart = 3;
-        this.score=0;
+        this.score = 0;
         this.status = Actor.ALIVE;
         this.img = new ImageIcon(getClass().getResource("/Images/bomber_down.png")).getImage();
         width = img.getWidth(null);
-        height = img.getHeight(null)-20;
+        height = img.getHeight(null) - 20;
     }
 
-    public void setNew(int x,int y) {
+    public void setNew(int x, int y) {
         this.x = x;
         this.y = y;
         this.status = ALIVE;
         this.img = new ImageIcon(getClass().getResource("/Images/bomber_down.png")).getImage();
     }
+
     public int getScore() {
         return score;
     }
@@ -62,15 +59,14 @@ public class Bomber extends Actor{
     }
 
     public void setQuantityBomb(int quantityBomb) {
-        if(quantityBomb>5){
+        if (quantityBomb > 5) {
             return;
         }
         this.quantityBomb = quantityBomb;
     }
 
-
     public void setSizeBomb(int sizeBomb) {
-        if(sizeBomb>3){
+        if (sizeBomb > 3) {
             return;
         }
         this.sizeBomb = sizeBomb;
@@ -114,4 +110,3 @@ public class Bomber extends Actor{
         }
     }
 }
-

@@ -1,8 +1,8 @@
-package com.GameObjects;
+package GameObjects;
 
 //import sound.GameSound;
 
-import com.GUI.GUI;
+import GUI.GUI;
 
 import java.awt.*;
 import java.io.BufferedReader;
@@ -18,7 +18,7 @@ public class Manager {
     private ArrayList<Box> arrShadow;
     private ArrayList<Bomb> arrBomb;
     private ArrayList<BombBang> arrBombBang;
-    private int round=1;
+    private int round = 1;
     private int nextRound = 0;
     private int status = 0;
 
@@ -83,8 +83,7 @@ public class Manager {
                 String pathImage = str[3];
                 if (pathImage.equals("/Images/shawdow1.png")) {
                     y += 23;
-                }
-                else if (pathImage.equals("/Images/shawdow2.png")) {
+                } else if (pathImage.equals("/Images/shawdow2.png")) {
                     y += 38;
                 }
                 Box shadow = new Box(x, y, destructible, pathImage);
@@ -114,12 +113,12 @@ public class Manager {
     public void drawDialog(Graphics2D g2d, int type) {
         g2d.setFont(new Font("Arial", Font.BOLD, 70));
         g2d.setColor(Color.RED);
-        if(type==1){
+        if (type == 1) {
             g2d.drawString("You Lose !!!", 200, 250);
-        }else{
-            if(type==2){
-                g2d.drawString("Round "+round, 200, 250);
-            }else{
+        } else {
+            if (type == 2) {
+                g2d.drawString("Round " + round, 200, 250);
+            } else {
                 g2d.drawString("You Win !!!", 200, 250);
             }
         }
@@ -150,7 +149,8 @@ public class Manager {
         for (int i = 0; i < arrBomb.size(); i++) {
             arrBomb.get(i).deadlineBomb();
             if (arrBomb.get(i).getTimeline() == 250) {
-                BombBang bomBang = new BombBang(arrBomb.get(i).getX(), arrBomb.get(i).getY(), arrBomb.get(i).getSize(), arrBox);
+                BombBang bomBang = new BombBang(arrBomb.get(i).getX(), arrBomb.get(i).getY(), arrBomb.get(i).getSize(),
+                        arrBox);
                 arrBombBang.add(bomBang);
                 arrBomb.remove(i);
             }
@@ -159,7 +159,8 @@ public class Manager {
         for (int i = 0; i < arrBombBang.size(); i++) {
             for (int j = 0; j < arrBomb.size(); j++) {
                 if (arrBombBang.get(i).isImpactBombBangvsBomb(arrBomb.get(j))) {
-                    BombBang bomBang = new BombBang(arrBomb.get(j).getX(), arrBomb.get(j).getY(), arrBomb.get(j).getSize(), arrBox);
+                    BombBang bomBang = new BombBang(arrBomb.get(j).getX(), arrBomb.get(j).getY(),
+                            arrBomb.get(j).getSize(), arrBox);
                     arrBombBang.add(bomBang);
                     arrBomb.remove(j);
                 }
@@ -218,4 +219,3 @@ public class Manager {
     }
 
 }
-
