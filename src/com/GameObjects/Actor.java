@@ -12,7 +12,7 @@ public class Actor {
     public static final int ALIVE = 1;
     public static final int BOMBER = 1;
     public static final int BOMB = 4;
-
+    public static final int MONSTER = 2;
 
     protected int x, y, type, orient, speed, width, height, runBomb;
     protected Image img;
@@ -23,6 +23,9 @@ public class Actor {
             case BOMBER:
                 g2d.drawImage(img, x, y - 20, null);
                 break;
+            case MONSTER:
+			    g2d.drawImage(img, x, y-23, null);
+			    break;
             case BOMB:
                 g2d.drawImage(img, x, y, null);
                 break;
@@ -32,7 +35,7 @@ public class Actor {
         }
     }
 
-    public boolean move(int count, ArrayList<Bomb> arrBomb) {
+    public boolean move(int count, ArrayList<Bomb> arrBomb, ArrayList<Box> arrBox) {
         if (count % speed != 0) {
             return true;
         }
@@ -42,24 +45,116 @@ public class Actor {
                     return false;
                 }
                 x = x - 1;
+
+                for (Bomb bomb : arrBomb) {
+                    if (bomb.isImpactBombvsActor(this) == 1) {
+                        x = x + 1;
+                        return false;
+                    }
+                }
+
+                for (Box box : arrBox) {
+                    int kq = box.isImpactBoxVsActor(this);
+                    if (kq != 0) {
+                        if (kq >= -20 && kq <= 20) {
+                            if (kq > 0) {
+                                y = y + 1;
+                            } else {
+                                y = y - 1;
+                            }
+                        }
+                        x = x + 1;
+                        return false;
+                    }
+                }
+
                 break;
             case RIGHT:
-                if (x > (675 - width)) {
+                if (x > (GUI.WIDTHPLAY - width)) {
                     return false;
                 }
                 x = x + 1;
+
+                for (Bomb bomb : arrBomb) {
+                    if (bomb.isImpactBombvsActor(this) == 1) {
+                        x = x - 1;
+                        return false;
+                    }
+                }
+
+                for (Box box : arrBox) {
+                    int kq = box.isImpactBoxVsActor(this);
+                    if (kq != 0) {
+                        if (kq >= -20 && kq <= 20) {
+                            if (kq > 0) {
+                                y = y + 1;
+                            } else {
+                                y = y - 1;
+                            }
+                        }
+                        x = x - 1;
+                        return false;
+                    }
+                }
+
                 break;
             case UP:
                 if (y <= 0) {
                     return false;
                 }
                 y = y - 1;
+
+                for (Bomb bomb : arrBomb) {
+                    if (bomb.isImpactBombvsActor(this) == 1) {
+                        y = y + 1;
+                        return false;
+                    }
+                }
+
+                for (Box box : arrBox) {
+                    int kq = box.isImpactBoxVsActor(this);
+                    if (kq != 0) {
+                        if (kq >= -20 && kq <= 20) {
+                            if (kq > 0) {
+                                x = x + 1;
+                            } else {
+                                x = x - 1;
+                            }
+                        }
+                        y = y + 1;
+                        return false;
+                    }
+                }
+
                 break;
             case DOWN:
-                if (y >= (GUI.HEIGHTJF - 25 - height)) {
+                if (y >= (GUI.HEIGHTPLAY - height)) {
                     return false;
                 }
                 y = y + 1;
+
+                for (Bomb bomb : arrBomb) {
+                    if (bomb.isImpactBombvsActor(this) == 1) {
+                        y = y - 1;
+                        return false;
+                    }
+                }
+
+                for (Box box : arrBox) {
+                    int kq = box.isImpactBoxVsActor(this);
+                    if (kq != 0) {
+                        if (kq >= -20 && kq <= 20) {
+                            if (kq > 0) {
+                                x = x + 1;
+                            } else {
+                                x = x - 1;
+                            }
+                        }
+                        y = y - 1;
+                        return false;
+                    }
+                }
+
                 break;
 
             default:

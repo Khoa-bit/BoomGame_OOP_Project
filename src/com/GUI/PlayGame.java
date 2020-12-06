@@ -2,6 +2,7 @@ package com.GUI;
 
 import com.GameObjects.Manager;
 import com.GameObjects.Bomber;
+import com.GameObjects.Manager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,6 +12,11 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.BitSet;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 public class PlayGame extends JPanel implements Runnable, ActionListener {
     public static boolean IS_RUNNING = true;
@@ -51,7 +57,10 @@ public class PlayGame extends JPanel implements Runnable, ActionListener {
         g2d.setStroke(new java.awt.BasicStroke(2));
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         mMagager.drawAllBomb(g2d);
+        mMagager.drawAllBox(g2d);
+        mMagager.drawAllMonster(g2d);
         mMagager.getmBomber().drawActor(g2d);
+        mMagager.drawAllShawDow(g2d);
         if (mMagager.getStatus() == 1) {
             mMagager.drawDialog(g2d, 1);
         }
@@ -86,21 +95,21 @@ public class PlayGame extends JPanel implements Runnable, ActionListener {
 
             if (traceKey.get(KeyEvent.VK_LEFT)) {
                 mMagager.getmBomber().changeOrient(Bomber.LEFT);
-                mMagager.getmBomber().move(count, mMagager.getArrBomb());
+                mMagager.getmBomber().move(count, mMagager.getArrBomb(), mMagager.getArrBox());
 
             }
             if (traceKey.get(KeyEvent.VK_RIGHT)) {
                 mMagager.getmBomber().changeOrient(Bomber.RIGHT);
-                mMagager.getmBomber().move(count, mMagager.getArrBomb());
+                mMagager.getmBomber().move(count, mMagager.getArrBomb(), mMagager.getArrBox());
             }
             if (traceKey.get(KeyEvent.VK_UP)) {
                 mMagager.getmBomber().changeOrient(Bomber.UP);
-                mMagager.getmBomber().move(count, mMagager.getArrBomb());
+                mMagager.getmBomber().move(count, mMagager.getArrBomb(), mMagager.getArrBox());
 
             }
             if (traceKey.get(KeyEvent.VK_DOWN)) {
                 mMagager.getmBomber().changeOrient(Bomber.DOWN);
-                mMagager.getmBomber().move(count, mMagager.getArrBomb());
+                mMagager.getmBomber().move(count, mMagager.getArrBomb(), mMagager.getArrBox());
             }
             if (traceKey.get(KeyEvent.VK_SPACE)) {
                 mMagager.innitBomb();
@@ -136,10 +145,18 @@ public class PlayGame extends JPanel implements Runnable, ActionListener {
                 }
             }
 
-            repaint();
-            count++;
-            if (count == 1000000) {
-                count = 0;
+            if(move==0){
+				mMagager.changeOrientAll();
+				move=5000;
+			}
+			if(move>0){
+				move--;
+			}
+			mMagager.moveAllMonster(count);
+			repaint();
+			count++;
+			if(count==1000000){
+				count=0;
             }
         }
 

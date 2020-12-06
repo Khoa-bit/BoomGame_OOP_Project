@@ -8,8 +8,8 @@ import javax.swing.ImageIcon;
 
 
 public class Bomber extends Actor{
-    public static int ALLOW_RUN=0;
-    public static int DISALLOW_RUN=1;
+    public static int ALLOW_RUN = 0;
+    public static int DISALLOW_RUN = 1;
     protected int sizeBomb,quantityBomb,status,score,heart;
 
 
@@ -89,8 +89,8 @@ public class Bomber extends Actor{
     }
 
     @Override
-    public boolean move(int count, ArrayList<Bomb> arrBomb) {
-        return super.move(count, arrBomb);
+    public boolean move(int count, ArrayList<Bomb> arrBomb, ArrayList<Box> arrBox) {
+        return super.move(count, arrBomb, arrBox);
     }
 
     @Override
