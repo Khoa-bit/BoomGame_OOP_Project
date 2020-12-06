@@ -15,6 +15,7 @@ public class Menu extends JPanel{
     private JLabel lbPlayGame;
     private JLabel lbOption;
     private JLabel lbExit;
+    private JLabel lbHigthScore;
 
     public Menu(MyContainer mContainer){
         this.mContainer = mContainer;
@@ -22,18 +23,25 @@ public class Menu extends JPanel{
         setBackground(Color.BLACK);
         setLayout(null);
         initComps(mGui);
+        initbackground();
     }
 
     public void initComps(GUI mGui){
         lbPlayGame = setLabel((mGui.getWidth()-150)/2-30, (mGui.getHeight()-30)/2-150, "/Images/Play.png");
         lbOption = setLabel(lbPlayGame.getX(),lbPlayGame.getY() + lbPlayGame.getHeight()+padding, "/Images/Option.png");
-        lbExit = setLabel(lbOption.getX(),lbOption.getY() + lbPlayGame.getHeight()+padding, "/Images/Exit.png");
+        lbHigthScore = setLabel(lbOption.getX(),lbOption.getY() + lbPlayGame.getHeight()+padding, "/Images/HightScore.png");
+        lbExit = setLabel(lbHigthScore.getX(),lbHigthScore.getY() + lbPlayGame.getHeight()+padding, "/Images/Exit.png");
+
         lbPlayGame.addMouseListener(mMouseAdapter);
         lbOption.addMouseListener(mMouseAdapter);
+        lbHigthScore.addMouseListener(mMouseAdapter);
         lbExit.addMouseListener(mMouseAdapter);
+        
         add(lbPlayGame);
         add(lbOption);
+        add(lbHigthScore);
         add(lbExit);
+        
     }
 
     public void initbackground(){
@@ -41,6 +49,7 @@ public class Menu extends JPanel{
         lbbackground.setBounds(0, -10, mGui.getWidth(), mGui.getHeight());
         lbbackground.setBackground(Color.BLACK);
         add(lbbackground);
+        
     }
 
     public JLabel setLabel(int x, int y, String ImageIcon){
@@ -64,6 +73,11 @@ public class Menu extends JPanel{
                 lbOption.setIcon(optionIcon);
             }
 
+            if(e.getSource()==lbHigthScore){
+				ImageIcon hightScoreIcon = new ImageIcon(getClass().getResource("/Images/HightScore2.png"));
+				lbHigthScore.setIcon(hightScoreIcon);
+            }
+            
             if(e.getSource()==lbExit){
                 ImageIcon exitIcon = new ImageIcon(getClass().getResource("/Images/Exit2.png"));
                 lbExit.setIcon(exitIcon);
@@ -81,7 +95,12 @@ public class Menu extends JPanel{
                 ImageIcon optionIcon = new ImageIcon(getClass().getResource("/Images/Option.png"));
                 lbOption.setIcon(optionIcon);
             }
-
+            
+            if(e.getSource()==lbHigthScore){
+				ImageIcon hightScoreIcon = new ImageIcon(getClass().getResource("/Images/HightScore.png"));
+				lbHigthScore.setIcon(hightScoreIcon);
+            }
+            
             if(e.getSource()==lbExit){
                 ImageIcon exitIcon = new ImageIcon(getClass().getResource("/Images/Exit.png"));
                 lbExit.setIcon(exitIcon);
@@ -100,7 +119,10 @@ public class Menu extends JPanel{
 
             if(e.getSource()==lbExit){
                 mGui.dispose();
-                PlayGame.IS_RUNNING=false;
+                PlayGame.IS_RUNNING=false;    
+            }
+            if(e.getSource()==lbHigthScore){
+                mContainer.setShowHightScore();
             }
 		}
 	};
