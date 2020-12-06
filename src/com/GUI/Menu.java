@@ -102,8 +102,7 @@ public class Menu extends JPanel{
                 mGui.dispose();
                 PlayGame.IS_RUNNING=false;
             }
-            if(e.getSource()==lbHigthScore){
-				mContainer.setShowHightScore();
-        }
-    };
+		}
+	};
+	
 }
