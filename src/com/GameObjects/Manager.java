@@ -50,6 +50,20 @@ public class Manager {
                 status = 0;
                 break;
 
+            case 2:
+                mBomber = new Bomber(0, 540, Actor.BOMBER, Actor.DOWN, 5, 2, 5);
+                innit("src/Map2/BOX.txt", "src/Map2/SHADOW.txt","src/Map2/MONSTER.txt");
+                nextRound = 0;
+                status = 0;
+                break;
+
+            case 3:
+                mBomber = new Bomber(0, 540, Actor.BOMBER, Actor.DOWN, 5, 2, 5);
+                innit("src/Map3/BOX.txt", "src/Map3/SHADOW.txt","src/Map3/MONSTER.txt");
+                nextRound = 0;
+                status = 0;
+                break;
+
             default:
                 break;
         }
