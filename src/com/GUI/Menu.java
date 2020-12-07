@@ -16,6 +16,7 @@ public class Menu extends JPanel{
     private JLabel lbOption;
     private JLabel lbExit;
     private JLabel lbHigthScore;
+    private ImageIcon backgroundIcon;
 
     public Menu(MyContainer mContainer){
         this.mContainer = mContainer;
@@ -48,6 +49,8 @@ public class Menu extends JPanel{
         lbbackground = new JLabel();
         lbbackground.setBounds(0, -10, mGui.getWidth(), mGui.getHeight());
         lbbackground.setBackground(Color.BLACK);
+        backgroundIcon = new ImageIcon(getClass().getResource("/Images/background_Menu.png"));
+        lbbackground.setIcon(backgroundIcon);
         add(lbbackground);
         
     }

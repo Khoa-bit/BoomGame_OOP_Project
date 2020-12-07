@@ -56,6 +56,7 @@ public class PlayGame extends JPanel implements Runnable, ActionListener {
         Graphics2D g2d = (Graphics2D) g;
         g2d.setStroke(new java.awt.BasicStroke(2));
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+//        draWBackground(g2d);
         mMagager.drawAllBomb(g2d);
         mMagager.drawAllBox(g2d);
         mMagager.drawAllMonster(g2d);
@@ -70,6 +71,12 @@ public class PlayGame extends JPanel implements Runnable, ActionListener {
         if (mMagager.getStatus() == 3) {
             mMagager.drawDialog(g2d, 3);
         }
+    }
+
+    public void draWBackground(Graphics2D g2d) {
+        Image imgBackground = new ImageIcon(getClass().getResource("/Images/background_Play.png"))
+                .getImage();
+        g2d.drawImage(imgBackground, 0, 0, null);
     }
 
     private KeyAdapter keyAdapter = new KeyAdapter() {
