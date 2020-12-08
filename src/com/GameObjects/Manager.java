@@ -3,6 +3,7 @@ package com.GameObjects;
 //import sound.GameSound;
 
 import com.GUI.GUI;
+import com.GUI.GameSFX;
 
 import java.awt.*;
 import java.awt.Color;
@@ -161,6 +162,8 @@ public class Manager {
         if (arrBomb.size() >= mBomber.getQuantityBomb()) {
             return;
         }
+        GameSFX.play(GameSFX.new_bomb, false);
+
         Bomb mBomb = new Bomb(x, y, mBomber.getSizeBomb(), 3000);
         arrBomb.add(mBomb);
     }
@@ -213,6 +216,8 @@ public class Manager {
                 BombBang bomBang = new BombBang(arrBomb.get(i).getX(), arrBomb.get(i).getY(), arrBomb.get(i).getSize(), arrBox);
                 arrBombBang.add(bomBang);
                 arrBomb.remove(i);
+
+                GameSFX.play(GameSFX.bombBang, false);
             }
         }
 
@@ -222,6 +227,8 @@ public class Manager {
                     BombBang bomBang = new BombBang(arrBomb.get(j).getX(), arrBomb.get(j).getY(), arrBomb.get(j).getSize(), arrBox);
                     arrBombBang.add(bomBang);
                     arrBomb.remove(j);
+
+                    GameSFX.play(GameSFX.bombBang, false);
                 }
             }
         }

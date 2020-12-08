@@ -42,7 +42,6 @@ public class Menu extends JPanel{
         add(lbOption);
         add(lbHigthScore);
         add(lbExit);
-        
     }
 
     public void initbackground(){
@@ -121,6 +120,7 @@ public class Menu extends JPanel{
             }
 
             if(e.getSource()==lbExit){
+                GameSFX.stop();
                 mGui.dispose();
                 PlayGame.IS_RUNNING=false;    
             }

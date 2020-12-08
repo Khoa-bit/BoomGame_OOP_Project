@@ -121,7 +121,6 @@ public class PlayGame extends JPanel implements Runnable, ActionListener {
             if (traceKey.get(KeyEvent.VK_SPACE)) {
                 mMagager.innitBomb();
                 mMagager.getmBomber().setRunBomb(Bomber.ALLOW_RUN);
-
             }
             mMagager.setRunBomer();
             mMagager.deadLineAllBomb();

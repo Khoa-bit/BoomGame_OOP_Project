@@ -39,6 +39,7 @@ public class MyContainer extends JPanel{
     public void setShowMenu(){
         mCardLayout.show(MyContainer.this, TAG_MENU);
         mMenu.requestFocus();
+        GameSFX.play(GameSFX.menu, true);
     }
 
     public void setShowOption(){
@@ -49,6 +50,7 @@ public class MyContainer extends JPanel{
     public void setShowPlay(){
         mCardLayout.show(MyContainer.this, TAG_PLAYGAME);
         mPlayGame.requestFocus();
+        GameSFX.stop();
     }
 
     public void setShowHightScore(){
