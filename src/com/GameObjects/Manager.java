@@ -63,10 +63,13 @@ public class Manager {
         arrBomb = new ArrayList<>();
         arrBombBang = new ArrayList<>();
         arrMonster = new ArrayList<Monster>();
+        arrHightScore = new ArrayList<HightScore>();
 
         innitArrBox(pathBox);
         innitArrShadow(pathShadow);
         initarrMonster(pathMonster);
+        innitArrHightScore("src/hightscore/HightScore.txt");
+        
     }
 
     public void innitArrBox(String pathBox) {
@@ -210,6 +213,16 @@ public class Manager {
             shadow.drawBox(g2d);
         }
     }
+    public void drawInfo(Graphics2D g2d) {
+        g2d.drawString("SCORE : " + mBomber.getScore(), 740, 200);
+
+    }
+    public void checkWinAndLose() {
+        if (arrMonster.size() == 0) {
+            saveScore();
+			return;
+        }
+    }
 
     public void deadLineAllBomb() {
         for (int i = 0; i < arrBomb.size(); i++) {
@@ -246,6 +259,7 @@ public class Manager {
 						arrMonster.get(j).setHeart(arrMonster.get(j).getHeart()-1);
                     }
                     else{
+                        mBomber.setScore(mBomber.getScore() + 1);
 						arrMonster.remove(j);
 					}
 				}
@@ -287,7 +301,7 @@ public class Manager {
     public void saveScore(){
 		System.out.println();
 		if(mBomber.getScore()>arrHightScore.get(arrHightScore.size()-1).getScore()){
-			String name = JOptionPane.showInputDialog("Please input Your Name");
+			String name = JOptionPane.showInputDialog("Please input Your Name: ");
 			HightScore newScore = new HightScore(name, mBomber.getScore());
 			arrHightScore.add(newScore);
 		}
@@ -295,11 +309,11 @@ public class Manager {
 
 			@Override
 			public int compare(HightScore score1, HightScore score2) {
-				if(score1.getScore()<score2.getScore()){
+				if(score1.getScore() < score2.getScore()){
 					return 1;
 				}
 				else{
-					if(score1.getScore()==score2.getScore()){
+					if(score1.getScore() == score2.getScore()){
 						return 0;
 					}
 					else{
@@ -309,20 +323,22 @@ public class Manager {
 			}
 		});
 		
-		if(arrHightScore.size()>10){
+		if(arrHightScore.size() > 10){
 			arrHightScore.remove(arrHightScore.size()-1);
 		}
 		
 		try {
-			FileOutputStream fileOutput = new FileOutputStream("src/hightscore/HightScore.txt");
-			for(int i=0;i<arrHightScore.size();i++){
+            FileOutputStream fileOutput = new FileOutputStream("src/hightscore/HightScore.txt");
+		    for(int i=0; i<arrHightScore.size(); i++){
 				String content = arrHightScore.get(i).getName()+":"+arrHightScore.get(i).getScore()+"\n";
 				fileOutput.write(content.getBytes());
 			}
-		} catch (IOException e ) {
+        } 
+        catch (IOException e ) {
 			e.printStackTrace();
 		}
-	}
+     }
+
     public ArrayList<Box> getArrBox() {
         return arrBox;
     }

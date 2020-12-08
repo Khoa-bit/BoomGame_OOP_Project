@@ -1,3 +1,10 @@
 Mai Oanh:30
-Dat ngok ngek:12
-Khoa Aka:10
+Dat ngok ngek:26
+Khoa Aka:24
+Dat beo:22
+Khoa Sieu Nhan:20
+Oanh Oanh:15
+Dat deptrai:10
+Mimi:5
+
+

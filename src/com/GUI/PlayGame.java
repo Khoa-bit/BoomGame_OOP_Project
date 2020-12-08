@@ -61,6 +61,7 @@ public class PlayGame extends JPanel implements Runnable, ActionListener {
         mMagager.drawAllMonster(g2d);
         mMagager.getmBomber().drawActor(g2d);
         mMagager.drawAllShawDow(g2d);
+        mMagager.drawInfo(g2d);
         if (mMagager.getStatus() == 1) {
             mMagager.drawDialog(g2d, 1);
         }
@@ -118,6 +119,7 @@ public class PlayGame extends JPanel implements Runnable, ActionListener {
             }
             mMagager.setRunBomer();
             mMagager.deadLineAllBomb();
+            mMagager.checkWinAndLose();
 
             if (mMagager.getStatus() == 1) {
                 timeLose++;
