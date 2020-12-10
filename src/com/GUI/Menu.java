@@ -127,6 +127,7 @@ public class Menu extends JPanel{
             if(e.getSource()==lbHigthScore){
                 mContainer.setShowHightScore();
             }
-        }
-    };
+		}
+	};
+	
 }

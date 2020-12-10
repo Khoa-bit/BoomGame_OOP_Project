@@ -105,7 +105,17 @@ public class BombBang {
         Rectangle rec2 = new Rectangle(box.getX(), box.getY(), box.getWidth(), box.getHeight());
         return rec1.intersects(rec2);
     }
-
+    public boolean isImpactBombBangVsActor(Actor actor){
+		Rectangle rec1 = new Rectangle(x+45-img_left.getWidth(null)+5, y+5, img_left.getWidth(null)-5, img_left.getHeight(null)-10);
+		Rectangle rec2 = new Rectangle(x, y+5, img_right.getWidth(null)-5, img_right.getHeight(null)-10);
+		Rectangle rec3 = new Rectangle(x+5, y+45-img_up.getHeight(null)+5, img_up.getWidth(null)-5, img_up.getHeight(null)-10);
+		Rectangle rec4 = new Rectangle(x+5, y, img_down.getWidth(null)-10, img_down.getHeight(null)-5);
+		Rectangle rec5 = new Rectangle(actor.getX(), actor.getY(), actor.getWidth(), actor.getHeight());
+		if(rec1.intersects(rec5) || rec2.intersects(rec5) || rec3.intersects(rec5) || rec4.intersects(rec5)){
+			return true;
+		}
+		return false;
+	}
     public boolean isImpactBombBangvsBox(Box box){
         if(!box.isDestructible()){
             return false;

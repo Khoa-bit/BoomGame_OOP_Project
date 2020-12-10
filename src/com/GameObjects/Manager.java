@@ -33,6 +33,7 @@ public class Manager {
     private ArrayList<Bomb> arrBomb;
     private ArrayList<BombBang> arrBombBang;
     private ArrayList<Monster> arrMonster;
+    private ArrayList<HightScore> arrHightScore;
     private int round=1;
     private int nextRound = 0;
     private int status = 0;
@@ -76,10 +77,13 @@ public class Manager {
         arrBomb = new ArrayList<>();
         arrBombBang = new ArrayList<>();
         arrMonster = new ArrayList<Monster>();
+        arrHightScore = new ArrayList<HightScore>();
 
         innitArrBox(pathBox);
         innitArrShadow(pathShadow);
         initarrMonster(pathMonster);
+        innitArrHightScore("src/hightscore/HightScore.txt");
+        
     }
 
     public void innitArrBox(String pathBox) {
@@ -117,6 +121,24 @@ public class Manager {
 				Monster monster = new Monster(x, y, type, orient, speed, heart,
 						images);
 				arrMonster.add(monster);
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    }
+    public void innitArrHightScore(String path){
+		try {
+			FileReader file = new FileReader(path);
+			BufferedReader input = new BufferedReader(file);
+			String line;
+			while ((line = input.readLine()) != null) {
+				String str[] = line.split(":");
+				String name = str[0];
+				int score = Integer.parseInt(str[1]);
+				HightScore hightScore = new HightScore(name, score);
+				arrHightScore.add(hightScore);
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -205,6 +227,16 @@ public class Manager {
             shadow.drawBox(g2d);
         }
     }
+    public void drawInfo(Graphics2D g2d) {
+        g2d.drawString("SCORE : " + mBomber.getScore(), 740, 200);
+
+    }
+    public void checkWinAndLose() {
+        if (arrMonster.size() == 0) {
+            saveScore();
+			return;
+        }
+    }
 
     public void deadLineAllBomb() {
         for (int i = 0; i < arrBomb.size(); i++) {
@@ -232,7 +264,21 @@ public class Manager {
                 arrBombBang.remove(k);
             }
         }
-
+        for (int k = 0; k < arrBombBang.size(); k++) {
+			arrBombBang.get(k).deadlineBomb();
+			for (int j = 0; j < arrMonster.size(); j++) {
+                if (arrBombBang.get(k).isImpactBombBangVsActor(
+						arrMonster.get(j))) {
+					if(arrMonster.get(j).getHeart()>1){
+						arrMonster.get(j).setHeart(arrMonster.get(j).getHeart()-1);
+                    }
+                    else{
+                        mBomber.setScore(mBomber.getScore() + 1);
+						arrMonster.remove(j);
+					}
+				}
+            }
+        }
         for (int i = 0; i < arrBombBang.size(); i++) {
             for (int j = 0; j < arrBox.size(); j++) {
                 if (arrBombBang.get(i).isImpactBombBangvsBox(arrBox.get(j))) {
@@ -266,6 +312,46 @@ public class Manager {
 			}
 		}
 	}
+    public void saveScore(){
+		System.out.println();
+		if(mBomber.getScore()>arrHightScore.get(arrHightScore.size()-1).getScore()){
+			String name = JOptionPane.showInputDialog("Please input Your Name: ");
+			HightScore newScore = new HightScore(name, mBomber.getScore());
+			arrHightScore.add(newScore);
+		}
+		Collections.sort(arrHightScore, new Comparator<HightScore>() {
+
+			@Override
+			public int compare(HightScore score1, HightScore score2) {
+				if(score1.getScore() < score2.getScore()){
+					return 1;
+				}
+				else{
+					if(score1.getScore() == score2.getScore()){
+						return 0;
+					}
+					else{
+						return -1;
+					}
+				}
+			}
+		});
+		
+		if(arrHightScore.size() > 10){
+			arrHightScore.remove(arrHightScore.size()-1);
+		}
+		
+		try {
+            FileOutputStream fileOutput = new FileOutputStream("src/hightscore/HightScore.txt");
+		    for(int i=0; i<arrHightScore.size(); i++){
+				String content = arrHightScore.get(i).getName()+":"+arrHightScore.get(i).getScore()+"\n";
+				fileOutput.write(content.getBytes());
+			}
+        } 
+        catch (IOException e ) {
+			e.printStackTrace();
+		}
+     }
 
     public ArrayList<Box> getArrBox() {
         return arrBox;

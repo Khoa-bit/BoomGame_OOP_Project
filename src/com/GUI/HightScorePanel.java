@@ -67,7 +67,7 @@ public class HightScorePanel extends JPanel implements ActionListener{
 		int y=100;
 		for(int i=0;i<arrHightScore.size();i++){
 			g2d.drawString(""+(i+1), 270, y);
-			g2d.drawString(""+arrHightScore.get(i).getName(), 380, y);
+			g2d.drawString(""+arrHightScore.get(i).getName(), 330, y);
 			g2d.drawString(""+arrHightScore.get(i).getScore(), 600, y);
 			y=y+40;
 		}

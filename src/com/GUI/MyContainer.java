@@ -22,8 +22,8 @@ public class MyContainer extends JPanel{
         setLayout(mCardLayout);
         mMenu = new Menu(this);
         add(mMenu,TAG_MENU);
-        mPlayGame = new PlayGame(this);
-        add(mPlayGame, TAG_PLAYGAME);
+//        mPlayGame = new PlayGame(this);
+//        add(mPlayGame, TAG_PLAYGAME);
         mOption = new Option(this);
         add(mOption, TAG_OPTION);
         mHightScorePanel = new HightScorePanel(this);
@@ -39,6 +39,7 @@ public class MyContainer extends JPanel{
     public void setShowMenu(){
         mCardLayout.show(MyContainer.this, TAG_MENU);
         mMenu.requestFocus();
+        mPlayGame = null;
     }
 
     public void setShowOption(){
@@ -47,6 +48,8 @@ public class MyContainer extends JPanel{
     }
 
     public void setShowPlay(){
+        mPlayGame = new PlayGame(this);
+        add(mPlayGame, TAG_PLAYGAME);
         mCardLayout.show(MyContainer.this, TAG_PLAYGAME);
         mPlayGame.requestFocus();
     }
