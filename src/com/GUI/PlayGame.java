@@ -1,5 +1,6 @@
 package com.GUI;
 
+import SFX.Sound;
 import com.GameObjects.Manager;
 import com.GameObjects.Bomber;
 import com.GameObjects.Manager;
@@ -171,6 +172,7 @@ public class PlayGame extends JPanel implements Runnable, ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == btn_Menu) {
+            Sound.playSound(Sound.click);
             mMagager.setRound(1);
             mMagager.innitManager();
             mContainer.setShowMenu();

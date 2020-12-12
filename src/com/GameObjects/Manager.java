@@ -2,29 +2,18 @@ package com.GameObjects;
 
 //import sound.GameSound;
 
+import SFX.Sound;
 import com.GUI.GUI;
-import com.GUI.GameSFX;
 
-import java.awt.*;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.RenderingHints;
 import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Random;
-import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
 
 public class Manager {
     private Random random = new Random();
@@ -162,7 +151,7 @@ public class Manager {
         if (arrBomb.size() >= mBomber.getQuantityBomb()) {
             return;
         }
-        GameSFX.play(GameSFX.new_bomb, false);
+        Sound.playSound(Sound.placeBoom);
 
         Bomb mBomb = new Bomb(x, y, mBomber.getSizeBomb(), 3000);
         arrBomb.add(mBomb);
@@ -217,7 +206,8 @@ public class Manager {
                 arrBombBang.add(bomBang);
                 arrBomb.remove(i);
 
-                GameSFX.play(GameSFX.bombBang, false);
+//                GameSFX.play(GameSFX.bombBang, false);
+                Sound.playSound(Sound.boomBang);
             }
         }
 
@@ -228,7 +218,8 @@ public class Manager {
                     arrBombBang.add(bomBang);
                     arrBomb.remove(j);
 
-                    GameSFX.play(GameSFX.bombBang, false);
+//                    GameSFX.play(GameSFX.bombBang, false);
+                    Sound.playSound(Sound.boomBang);
                 }
             }
         }

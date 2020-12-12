@@ -1,8 +1,11 @@
 package com.GUI;
 
+import SFX.Sound;
+
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -111,6 +114,7 @@ public class Menu extends JPanel{
 
         @Override
         public void mousePressed(MouseEvent e) {
+            Sound.playSound(Sound.click);
             if(e.getSource()==lbPlayGame){
                 mContainer.setShowPlay();
             }
@@ -120,9 +124,14 @@ public class Menu extends JPanel{
             }
 
             if(e.getSource()==lbExit){
-                GameSFX.stop();
+//                GameSFX.stop();
+                Sound.stopAllClip();
+                Sound.playSound(Sound.exit);
+                long end = (new Date()).getTime() + 4000;
+                while ((new Date()).getTime() < end) {
+                }
                 mGui.dispose();
-                PlayGame.IS_RUNNING=false;    
+                PlayGame.IS_RUNNING=false;
             }
             if(e.getSource()==lbHigthScore){
                 mContainer.setShowHightScore();

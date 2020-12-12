@@ -1,5 +1,7 @@
 package com.GUI;
 
+import SFX.Sound;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -36,6 +38,7 @@ public class Option extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==btn_ok){
+            Sound.playSound(Sound.click);
             mContainer.setShowMenu();
         }
     }
