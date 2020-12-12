@@ -1,5 +1,7 @@
 package com.GUI;
 
+import SFX.Sound;
+
 import java.awt.*;
 import javax.swing.JPanel;
 
@@ -40,6 +42,8 @@ public class MyContainer extends JPanel{
         mCardLayout.show(MyContainer.this, TAG_MENU);
         mMenu.requestFocus();
         mPlayGame = null;
+        Sound.playSoundLoop(Sound.menu);
+        Sound.stopAllClip();
     }
 
     public void setShowOption(){
@@ -52,6 +56,8 @@ public class MyContainer extends JPanel{
         add(mPlayGame, TAG_PLAYGAME);
         mCardLayout.show(MyContainer.this, TAG_PLAYGAME);
         mPlayGame.requestFocus();
+        Sound.stopAllClip();
+        Sound.playSoundLoop(Sound.background);
     }
 
     public void setShowHightScore(){

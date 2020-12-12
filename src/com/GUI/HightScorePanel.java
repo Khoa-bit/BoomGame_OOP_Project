@@ -20,6 +20,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
+import SFX.Sound;
 import com.GameObjects.HightScore;
 
 public class HightScorePanel extends JPanel implements ActionListener{
@@ -97,6 +98,7 @@ public class HightScorePanel extends JPanel implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==btn_ok){
+			Sound.playSound(Sound.click);
 			mContainer.setShowMenu();
 		}	
 	}
