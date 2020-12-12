@@ -25,7 +25,7 @@ public class Manager {
     private ArrayList<Monster> arrMonster;
     private ArrayList<HighScore> arrHighScore;
     private int round=1;
-    private int nextRound = 0;
+    private boolean nextRound = true;
     private int status = 0;
 
     public Manager() {
@@ -35,23 +35,23 @@ public class Manager {
     public void innitManager() {
         switch (round) {
             case 1:
-                mBomber = new Bomber(0, 540, Actor.BOMBER, Actor.DOWN, 5, 2, 5);
+                mBomber = new Bomber(0, 540, Actor.BOMBER, Actor.DOWN, 3, 2, 10);
                 innit("src/Map1/BOX.txt", "src/Map1/SHADOW.txt","src/Map1/MONSTER.txt");
-                nextRound = 0;
+                nextRound = true;
                 status = 0;
                 break;
 
             case 2:
                 mBomber.setNew(315, 270);
                 innit("src/Map2/BOX.txt", "src/Map2/SHADOW.txt","src/Map2/MONSTER.txt");
-                nextRound = 0;
+                nextRound = true;
                 status = 0;
                 break;
 
             case 3:
                 mBomber.setNew(315, 495);
                 innit("src/Map3/BOX.txt", "src/Map3/SHADOW.txt","src/Map3/MONSTER.txt");
-                nextRound = 0;
+                nextRound = true;
                 status = 0;
                 break;
 
@@ -66,13 +66,13 @@ public class Manager {
         arrShadow = new ArrayList<>();
         arrBomb = new ArrayList<>();
         arrBombBang = new ArrayList<>();
-        arrMonster = new ArrayList<Monster>();
-        arrHighScore = new ArrayList<HighScore>();
+        arrMonster = new ArrayList<>();
+        arrHighScore = new ArrayList<>();
 
         innitArrBox(pathBox);
         innitArrShadow(pathShadow);
-        initarrMonster(pathMonster);
-        innitArrHightScore("src/hightscore/HightScore.txt");
+        initArrMonster(pathMonster);
+        innitArrHighScore("src/highScore/HighScore.txt");
         
     }
 
@@ -94,7 +94,7 @@ public class Manager {
             e.printStackTrace();
         }
     }
-    public void initarrMonster(String path) {
+    public void initArrMonster(String path) {
 		try {
 			FileReader file = new FileReader(path);
 			BufferedReader input = new BufferedReader(file);
@@ -118,7 +118,7 @@ public class Manager {
 			e.printStackTrace();
 		}
     }
-    public void innitArrHightScore(String path){
+    public void innitArrHighScore(String path){
 		try {
 			FileReader file = new FileReader(path);
 			BufferedReader input = new BufferedReader(file);
@@ -224,9 +224,27 @@ public class Manager {
 
     }
     public void checkWinAndLose() {
-        if (arrMonster.size() == 0) {
-            saveScore();
-			return;
+//        if (mBomber.getHeart() == 0 && nextRound) {
+//            round = 1;
+//            status = 1;
+//            nextRound = false;
+//            SFX.stopAllClip();
+//            SFX.playSound(SFX.lose);
+//            saveScore();
+//        }
+        if (arrMonster.size() == 0 && nextRound) {
+            if (round == 3) {
+                status = 3;
+                nextRound = false;
+                SFX.stopAllClip();
+                SFX.playSound(SFX.victory);
+                saveScore();
+                round = 1;
+                return;
+            }
+            round = round + 1;
+            nextRound = false;
+            status = 2;
         }
     }
 
@@ -342,7 +360,7 @@ public class Manager {
 		}
 		
 		try {
-            FileOutputStream fileOutput = new FileOutputStream("src/hightscore/HightScore.txt");
+            FileOutputStream fileOutput = new FileOutputStream("src/highScore/HighScore.txt");
 		    for(int i = 0; i< arrHighScore.size(); i++){
 				String content = arrHighScore.get(i).getName()+":"+ arrHighScore.get(i).getScore()+"\n";
 				fileOutput.write(content.getBytes());

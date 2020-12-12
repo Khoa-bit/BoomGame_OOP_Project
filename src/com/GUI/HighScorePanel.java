@@ -76,7 +76,7 @@ public class HighScorePanel extends JPanel implements ActionListener{
 	public void ReadFileHighScore(){
 		arrHighScore = new ArrayList<HighScore>();
 		try {
-			FileReader file = new FileReader("src/hightscore/HightScore.txt");
+			FileReader file = new FileReader("src/highScore/HighScore.txt");
 			BufferedReader input = new BufferedReader(file);
 			String line;
 			while ((line = input.readLine()) != null) {
