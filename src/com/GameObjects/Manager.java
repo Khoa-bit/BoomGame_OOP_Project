@@ -2,17 +2,17 @@ package com.GameObjects;
 
 //import sound.GameSound;
 
-import SFX.Sound;
+import Sounds.SFX;
 import com.GUI.GUI;
 
+import javax.swing.*;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Random;
 
 public class Manager {
@@ -23,7 +23,7 @@ public class Manager {
     private ArrayList<Bomb> arrBomb;
     private ArrayList<BombBang> arrBombBang;
     private ArrayList<Monster> arrMonster;
-    private ArrayList<HightScore> arrHightScore;
+    private ArrayList<HighScore> arrHighScore;
     private int round=1;
     private int nextRound = 0;
     private int status = 0;
@@ -67,7 +67,7 @@ public class Manager {
         arrBomb = new ArrayList<>();
         arrBombBang = new ArrayList<>();
         arrMonster = new ArrayList<Monster>();
-        arrHightScore = new ArrayList<HightScore>();
+        arrHighScore = new ArrayList<HighScore>();
 
         innitArrBox(pathBox);
         innitArrShadow(pathShadow);
@@ -127,8 +127,8 @@ public class Manager {
 				String str[] = line.split(":");
 				String name = str[0];
 				int score = Integer.parseInt(str[1]);
-				HightScore hightScore = new HightScore(name, score);
-				arrHightScore.add(hightScore);
+				HighScore highScore = new HighScore(name, score);
+				arrHighScore.add(highScore);
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -173,7 +173,7 @@ public class Manager {
         if (arrBomb.size() >= mBomber.getQuantityBomb()) {
             return;
         }
-        Sound.playSound(Sound.placeBoom);
+        SFX.playSound(SFX.placeBoom);
 
         Bomb mBomb = new Bomb(x, y, mBomber.getSizeBomb(), 3000);
         arrBomb.add(mBomb);
@@ -239,7 +239,7 @@ public class Manager {
                 arrBomb.remove(i);
 
 //                GameSFX.play(GameSFX.bombBang, false);
-                Sound.playSound(Sound.boomBang);
+                SFX.playSound(SFX.boomBang);
             }
         }
 
@@ -251,7 +251,7 @@ public class Manager {
                     arrBomb.remove(j);
 
 //                    GameSFX.play(GameSFX.bombBang, false);
-                    Sound.playSound(Sound.boomBang);
+                    SFX.playSound(SFX.boomBang);
                 }
             }
         }
@@ -273,6 +273,8 @@ public class Manager {
                     else{
                         mBomber.setScore(mBomber.getScore() + 1);
 						arrMonster.remove(j);
+
+						SFX.playSound(SFX.monsterDed);
 					}
 				}
             }
@@ -312,15 +314,15 @@ public class Manager {
 	}
     public void saveScore(){
 		System.out.println();
-		if(mBomber.getScore()>arrHightScore.get(arrHightScore.size()-1).getScore()){
+//		if(mBomber.getScore() > arrHighScore.get(arrHighScore.size()-1).getScore()){
 			String name = JOptionPane.showInputDialog("Please input Your Name: ");
-			HightScore newScore = new HightScore(name, mBomber.getScore());
-			arrHightScore.add(newScore);
-		}
-		Collections.sort(arrHightScore, new Comparator<HightScore>() {
+			HighScore newScore = new HighScore(name, mBomber.getScore());
+			arrHighScore.add(newScore);
+//		}
+		Collections.sort(arrHighScore, new Comparator<HighScore>() {
 
 			@Override
-			public int compare(HightScore score1, HightScore score2) {
+			public int compare(HighScore score1, HighScore score2) {
 				if(score1.getScore() < score2.getScore()){
 					return 1;
 				}
@@ -335,14 +337,14 @@ public class Manager {
 			}
 		});
 		
-		if(arrHightScore.size() > 10){
-			arrHightScore.remove(arrHightScore.size()-1);
+		if(arrHighScore.size() > 10){
+			arrHighScore.remove(arrHighScore.size()-1);
 		}
 		
 		try {
             FileOutputStream fileOutput = new FileOutputStream("src/hightscore/HightScore.txt");
-		    for(int i=0; i<arrHightScore.size(); i++){
-				String content = arrHightScore.get(i).getName()+":"+arrHightScore.get(i).getScore()+"\n";
+		    for(int i = 0; i< arrHighScore.size(); i++){
+				String content = arrHighScore.get(i).getName()+":"+ arrHighScore.get(i).getScore()+"\n";
 				fileOutput.write(content.getBytes());
 			}
         } 

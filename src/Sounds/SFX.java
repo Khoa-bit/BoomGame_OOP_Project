@@ -1,22 +1,22 @@
-package SFX;
+package Sounds;
 
 import javax.sound.sampled.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Sound {
-    public static String boomBang = "src/SFX/bomb_bang.wav";
-    public static String ded = "src/SFX/ded.wav";
-    public static String item = "src/SFX/item.wav";
-    public static String background = "src/SFX/soundGame.wav";
-    public static String menu = "src/SFX/menu.wav";
-    public static String exit = "src/SFX/bye_bye.wav";
-    public static String click = "src/SFX/click.wav";
-    public static String monsterDed = "src/SFX/monster_ded.wav";
-    public static String placeBoom = "src/SFX/place-bomb.wav";
-    public static String victory = "src/SFX/Victory.wav";
-    public static String lose = "src/SFX/lose.wav";
+public class SFX {
+    public static String boomBang = "src/Sounds/bomb_bang.wav";
+    public static String ded = "src/Sounds/ded.wav";
+    public static String item = "src/Sounds/item.wav";
+    public static String background = "src/Sounds/soundGame.wav";
+    public static String menu = "src/Sounds/menu.wav";
+    public static String exit = "src/Sounds/bye_bye.wav";
+    public static String click = "src/Sounds/click.wav";
+    public static String monsterDed = "src/Sounds/monster_ded.wav";
+    public static String placeBoom = "src/Sounds/place-bomb.wav";
+    public static String victory = "src/Sounds/Victory.wav";
+    public static String lose = "src/Sounds/lose.wav";
 
     public static ArrayList<Clip> continuousClip = new ArrayList<>();
 

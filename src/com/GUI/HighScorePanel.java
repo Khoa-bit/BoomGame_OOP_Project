@@ -16,28 +16,26 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 
-import SFX.Sound;
-import com.GameObjects.HightScore;
+import Sounds.SFX;
+import com.GameObjects.HighScore;
 
-public class HightScorePanel extends JPanel implements ActionListener{
+public class HighScorePanel extends JPanel implements ActionListener{
 	private MyContainer mContainer;
 	private Image backgroundImage;
 	private JButton btn_ok;
-	private ArrayList<HightScore> arrHightScore;
+	private ArrayList<HighScore> arrHighScore;
 	
-	public HightScorePanel(MyContainer mContainer) {
+	public HighScorePanel(MyContainer mContainer) {
 		this.mContainer = mContainer;
 		setBackground(Color.YELLOW);
 		setLayout(null);
-		initCompts();
+		initComponents();
 	}
 	
-	public void initCompts(){
-		ReadFileHightScore();
+	public void initComponents(){
+		ReadFileHighScore();
 		
 		btn_ok = new JButton();
 		btn_ok.setText("OK");
@@ -66,17 +64,17 @@ public class HightScorePanel extends JPanel implements ActionListener{
 		g2d.drawRect(250, 50, 400, 450);
 		g2d.setColor(Color.BLACK);
 		int y=100;
-		for(int i=0;i<arrHightScore.size();i++){
+		for(int i = 0; i< arrHighScore.size(); i++){
 			g2d.drawString(""+(i+1), 270, y);
-			g2d.drawString(""+arrHightScore.get(i).getName(), 330, y);
-			g2d.drawString(""+arrHightScore.get(i).getScore(), 600, y);
+			g2d.drawString(""+ arrHighScore.get(i).getName(), 330, y);
+			g2d.drawString(""+ arrHighScore.get(i).getScore(), 600, y);
 			y=y+40;
 		}
 		
 	}
 	
-	public void ReadFileHightScore(){
-		arrHightScore = new ArrayList<HightScore>();
+	public void ReadFileHighScore(){
+		arrHighScore = new ArrayList<HighScore>();
 		try {
 			FileReader file = new FileReader("src/hightscore/HightScore.txt");
 			BufferedReader input = new BufferedReader(file);
@@ -85,8 +83,8 @@ public class HightScorePanel extends JPanel implements ActionListener{
 				String str[] = line.split(":");
 				String name = str[0];
 				int score = Integer.parseInt(str[1]);
-				HightScore hightScore = new HightScore(name, score);
-				arrHightScore.add(hightScore);
+				HighScore highScore = new HighScore(name, score);
+				arrHighScore.add(highScore);
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -98,7 +96,7 @@ public class HightScorePanel extends JPanel implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==btn_ok){
-			Sound.playSound(Sound.click);
+			SFX.playSound(SFX.click);
 			mContainer.setShowMenu();
 		}	
 	}

@@ -1,6 +1,6 @@
 package com.GUI;
 
-import SFX.Sound;
+import Sounds.SFX;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,10 +17,10 @@ public class Option extends JPanel implements ActionListener {
         this.mContainer = mContainer;
         setBackground(Color.YELLOW);
         setLayout(null);
-        initCompts();
+        initComponents();
     }
 
-    public void initCompts(){
+    public void initComponents(){
         lbbackground = new JLabel();
         lbbackground.setBounds(95, -40, GUI.WIDTHJF, GUI.HEIGHTJF);
         lbbackground.setBackground(Color.BLACK);
@@ -38,7 +38,7 @@ public class Option extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==btn_ok){
-            Sound.playSound(Sound.click);
+            SFX.playSound(SFX.click);
             mContainer.setShowMenu();
         }
     }

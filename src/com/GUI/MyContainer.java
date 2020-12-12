@@ -1,21 +1,21 @@
 package com.GUI;
 
-import SFX.Sound;
+import Sounds.SFX;
 
 import java.awt.*;
 import javax.swing.JPanel;
 
 public class MyContainer extends JPanel{
     private static final String TAG_MENU = "tag_menu";
-    private static final String TAG_PLAYGAME = "tag_playgame";
+    private static final String TAG_PLAY_GAME = "tag_play_game";
     private static final String TAG_OPTION = "tag_option";
-    private static final String TAG_HIGHTSCORE = "tag_hightscore";
+    private static final String TAG_HIGH_SCORE = "tag_high_score";
     private CardLayout mCardLayout;
     private GUI gui;
     private Menu mMenu;
     private Option mOption;
     private PlayGame mPlayGame;
-    private HightScorePanel mHightScorePanel;
+    private HighScorePanel mHighScorePanel;
 
     public MyContainer(GUI mGui){
         this.gui = mGui;
@@ -24,12 +24,12 @@ public class MyContainer extends JPanel{
         setLayout(mCardLayout);
         mMenu = new Menu(this);
         add(mMenu,TAG_MENU);
-//        mPlayGame = new PlayGame(this);
-//        add(mPlayGame, TAG_PLAYGAME);
+        mPlayGame = new PlayGame(this);
+        add(mPlayGame, TAG_PLAY_GAME);
         mOption = new Option(this);
         add(mOption, TAG_OPTION);
-        mHightScorePanel = new HightScorePanel(this);
-		add(mHightScorePanel, TAG_HIGHTSCORE);
+        mHighScorePanel = new HighScorePanel(this);
+		add(mHighScorePanel, TAG_HIGH_SCORE);
 
         setShowMenu();
     }
@@ -42,8 +42,8 @@ public class MyContainer extends JPanel{
         mCardLayout.show(MyContainer.this, TAG_MENU);
         mMenu.requestFocus();
         mPlayGame = null;
-        Sound.playSoundLoop(Sound.menu);
-        Sound.stopAllClip();
+        SFX.stopAllClip();
+        SFX.playSoundLoop(SFX.menu);
     }
 
     public void setShowOption(){
@@ -53,16 +53,16 @@ public class MyContainer extends JPanel{
 
     public void setShowPlay(){
         mPlayGame = new PlayGame(this);
-        add(mPlayGame, TAG_PLAYGAME);
-        mCardLayout.show(MyContainer.this, TAG_PLAYGAME);
+        add(mPlayGame, TAG_PLAY_GAME);
+        mCardLayout.show(MyContainer.this, TAG_PLAY_GAME);
         mPlayGame.requestFocus();
-        Sound.stopAllClip();
-        Sound.playSoundLoop(Sound.background);
+        SFX.stopAllClip();
+        SFX.playSoundLoop(SFX.background);
     }
 
-    public void setShowHightScore(){
-		mCardLayout.show(MyContainer.this, TAG_HIGHTSCORE);
-		mHightScorePanel.requestFocus();
+    public void setShowHighScore(){
+		mCardLayout.show(MyContainer.this, TAG_HIGH_SCORE);
+		mHighScorePanel.requestFocus();
 	}
 	
 }

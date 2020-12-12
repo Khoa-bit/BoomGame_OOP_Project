@@ -1,6 +1,6 @@
 package com.GUI;
 
-import SFX.Sound;
+import Sounds.SFX;
 
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
@@ -18,7 +18,7 @@ public class Menu extends JPanel{
     private JLabel lbPlayGame;
     private JLabel lbOption;
     private JLabel lbExit;
-    private JLabel lbHigthScore;
+    private JLabel lbHighScore;
     private ImageIcon backgroundIcon;
 
     public Menu(MyContainer mContainer){
@@ -26,28 +26,28 @@ public class Menu extends JPanel{
         this.mGui = mContainer.getGui();
         setBackground(Color.BLACK);
         setLayout(null);
-        initComps(mGui);
-        initbackground();
+        initComponents(mGui);
+        initBackground();
     }
 
-    public void initComps(GUI mGui){
+    public void initComponents(GUI mGui){
         lbPlayGame = setLabel((mGui.getWidth()-150)/2-30, (mGui.getHeight()-30)/2-150, "/Images/Play.png");
         lbOption = setLabel(lbPlayGame.getX(),lbPlayGame.getY() + lbPlayGame.getHeight()+padding, "/Images/Option.png");
-        lbHigthScore = setLabel(lbOption.getX(),lbOption.getY() + lbPlayGame.getHeight()+padding, "/Images/HightScore.png");
-        lbExit = setLabel(lbHigthScore.getX(),lbHigthScore.getY() + lbPlayGame.getHeight()+padding, "/Images/Exit.png");
+        lbHighScore = setLabel(lbOption.getX(),lbOption.getY() + lbPlayGame.getHeight()+padding, "/Images/HightScore.png");
+        lbExit = setLabel(lbHighScore.getX(), lbHighScore.getY() + lbPlayGame.getHeight()+padding, "/Images/Exit.png");
 
         lbPlayGame.addMouseListener(mMouseAdapter);
         lbOption.addMouseListener(mMouseAdapter);
-        lbHigthScore.addMouseListener(mMouseAdapter);
+        lbHighScore.addMouseListener(mMouseAdapter);
         lbExit.addMouseListener(mMouseAdapter);
         
         add(lbPlayGame);
         add(lbOption);
-        add(lbHigthScore);
+        add(lbHighScore);
         add(lbExit);
     }
 
-    public void initbackground(){
+    public void initBackground(){
         lbbackground = new JLabel();
         lbbackground.setBounds(0, -10, mGui.getWidth(), mGui.getHeight());
         lbbackground.setBackground(Color.BLACK);
@@ -78,9 +78,9 @@ public class Menu extends JPanel{
                 lbOption.setIcon(optionIcon);
             }
 
-            if(e.getSource()==lbHigthScore){
-				ImageIcon hightScoreIcon = new ImageIcon(getClass().getResource("/Images/HightScore2.png"));
-				lbHigthScore.setIcon(hightScoreIcon);
+            if(e.getSource()== lbHighScore){
+				ImageIcon highScoreIcon = new ImageIcon(getClass().getResource("/Images/HightScore2.png"));
+				lbHighScore.setIcon(highScoreIcon);
             }
             
             if(e.getSource()==lbExit){
@@ -101,9 +101,9 @@ public class Menu extends JPanel{
                 lbOption.setIcon(optionIcon);
             }
             
-            if(e.getSource()==lbHigthScore){
-				ImageIcon hightScoreIcon = new ImageIcon(getClass().getResource("/Images/HightScore.png"));
-				lbHigthScore.setIcon(hightScoreIcon);
+            if(e.getSource()== lbHighScore){
+				ImageIcon highScoreIcon = new ImageIcon(getClass().getResource("/Images/HightScore.png"));
+				lbHighScore.setIcon(highScoreIcon);
             }
             
             if(e.getSource()==lbExit){
@@ -114,7 +114,7 @@ public class Menu extends JPanel{
 
         @Override
         public void mousePressed(MouseEvent e) {
-            Sound.playSound(Sound.click);
+            SFX.playSound(SFX.click);
             if(e.getSource()==lbPlayGame){
                 mContainer.setShowPlay();
             }
@@ -125,16 +125,17 @@ public class Menu extends JPanel{
 
             if(e.getSource()==lbExit){
 //                GameSFX.stop();
-                Sound.stopAllClip();
-                Sound.playSound(Sound.exit);
+                SFX.stopAllClip();
+                SFX.playSound(SFX.exit);
+//                Waiting for music to finish playing
                 long end = (new Date()).getTime() + 4000;
                 while ((new Date()).getTime() < end) {
                 }
                 mGui.dispose();
                 PlayGame.IS_RUNNING=false;
             }
-            if(e.getSource()==lbHigthScore){
-                mContainer.setShowHightScore();
+            if(e.getSource()== lbHighScore){
+                mContainer.setShowHighScore();
             }
 		}
 	};

@@ -6,3 +6,5 @@ Khoa Sieu Nhan:20
 Oanh Oanh:15
 Dat deptrai:10
 Meo con:5
+null:0
+null:0

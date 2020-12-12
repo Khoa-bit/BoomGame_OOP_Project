@@ -1,11 +1,9 @@
 package com.GUI;
 
-import SFX.Sound;
+import Sounds.SFX;
 import com.GameObjects.Manager;
 import com.GameObjects.Bomber;
-import com.GameObjects.Manager;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,8 +13,6 @@ import java.util.BitSet;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class PlayGame extends JPanel implements Runnable, ActionListener {
@@ -174,7 +170,7 @@ public class PlayGame extends JPanel implements Runnable, ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == btn_Menu) {
-            Sound.playSound(Sound.click);
+            SFX.playSound(SFX.click);
             mMagager.setRound(1);
             mMagager.innitManager();
             mContainer.setShowMenu();

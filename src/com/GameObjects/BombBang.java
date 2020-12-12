@@ -10,13 +10,13 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
 public class BombBang {
-    private int x,y,size,timeLine;
+    private int x, y, size, timeLine;
     private Image img_left, img_right, img_up, img_down;
 
     public BombBang(int x, int y, int size, ArrayList<Box> arrBox) {
-        this.x=x;
-        this.y=y;
-        this.size=size;
+        this.x = x;
+        this.y = y;
+        this.size = size;
         this.timeLine = 250;
         img_left = new ImageIcon(getClass().getResource("/Images/bombbang_left_1.png")).getImage();
         img_right = new ImageIcon(getClass().getResource("/Images/bombbang_right_1.png")).getImage();

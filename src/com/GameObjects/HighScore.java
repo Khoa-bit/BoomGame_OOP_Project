@@ -1,10 +1,10 @@
 package com.GameObjects;
 
-public class HightScore {
+public class HighScore {
 	private String name;
 	private int score;
 	
-	public HightScore(String name, int score) {
+	public HighScore(String name, int score) {
 		super();
 		this.name = name;
 		this.score = score;
