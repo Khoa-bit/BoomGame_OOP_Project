@@ -17,7 +17,7 @@ public class BombBang {
         this.x = x;
         this.y = y;
         this.size = size;
-        this.timeLine = 250;
+        this.timeLine = 250; // This timeLine is the speed of motion that the bomb explodes
         img_left = new ImageIcon(getClass().getResource("/Images/bombbang_left_1.png")).getImage();
         img_right = new ImageIcon(getClass().getResource("/Images/bombbang_right_1.png")).getImage();
         img_up = new ImageIcon(getClass().getResource("/Images/bombbang_up_1.png")).getImage();
