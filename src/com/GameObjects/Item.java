@@ -24,4 +24,43 @@ public class Item {
         this.height = img.getHeight(null);
         timeLine = 250;
     }
+
+    public void drawItem(Graphics2D g2d) {
+        g2d.drawImage(img, x, y, null);
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int getTimeLine() {
+        return timeLine;
+    }
+
+    public void setTimeLine(int timeLine) {
+        this.timeLine = timeLine;
+    }
+
+    public boolean isImpactItemVsBomber(Bomber bomber) {
+        Rectangle rec1 = new Rectangle(x, y, width, height);
+        Rectangle rec2 = new Rectangle(bomber.getX(), bomber.getY(), bomber.getWidth(), bomber.getHeight());
+        return rec1.intersects(rec2);
+    }
+
 }
