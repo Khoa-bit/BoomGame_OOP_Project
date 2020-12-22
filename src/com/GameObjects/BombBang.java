@@ -102,12 +102,6 @@ public class BombBang {
         return false;
     }
 
-    private boolean isImpactBox(int x, int y, int width, int height, Box box) {
-        Rectangle rec1 = new Rectangle(x, y, width, height);
-        Rectangle rec2 = new Rectangle(box.getX(), box.getY(), box.getWidth(), box.getHeight());
-        return rec1.intersects(rec2);
-    }
-
     public boolean isImpactBombBangVsActor(Actor actor) {
         Rectangle rec1 = new Rectangle(x + 45 - img_left.getWidth(null) + 5, y + 5, img_left.getWidth(null) - 5,
                 img_left.getHeight(null) - 10);
