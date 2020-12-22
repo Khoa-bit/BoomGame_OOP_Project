@@ -31,8 +31,7 @@ public class SFX {
             clip.start();
             clip.loop(Clip.LOOP_CONTINUOUSLY);
             continuousClip.add(clip);
-        }
-        catch (UnsupportedAudioFileException | LineUnavailableException | IOException e) {
+        } catch (UnsupportedAudioFileException | LineUnavailableException | IOException e) {
             e.printStackTrace();
         }
     }
@@ -47,14 +46,13 @@ public class SFX {
             control.setValue(-5.0f);
             clip.start();
             clip.loop(0);
-        }
-        catch (UnsupportedAudioFileException | LineUnavailableException | IOException e) {
+        } catch (UnsupportedAudioFileException | LineUnavailableException | IOException e) {
             e.printStackTrace();
         }
     }
 
     public static void stopAllClip() {
-        for (Clip clip: continuousClip) {
+        for (Clip clip : continuousClip) {
             clip.stop();
         }
         continuousClip.clear();
