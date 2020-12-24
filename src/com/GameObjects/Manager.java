@@ -206,8 +206,14 @@ public class Manager {
 		for (int i = 0; i < arrMonster.size(); i++) {
 			arrMonster.get(i).drawActor(g2d);
 		}
-	}
-
+    }
+    
+    public void drawBoss(Graphics2D g2d) {
+		for (int i = 0; i < arrMonster.size(); i++) {
+			arrMonster.get(i).drawBoss(g2d);
+		}
+    }
+    
     public void drawAllBox(Graphics2D g2d) {
         for (Box box : arrBox) {
             box.drawBox(g2d);
@@ -260,6 +266,7 @@ public class Manager {
                 SFX.playSound(SFX.boomBang);
             }
         }
+        
 
         for (int i = 0; i < arrBombBang.size(); i++) {
             for (int j = 0; j < arrBomb.size(); j++) {
@@ -289,10 +296,14 @@ public class Manager {
 						arrMonster.get(j).setHeart(arrMonster.get(j).getHeart()-1);
                     }
                     else{
-                        mBomber.setScore(mBomber.getScore() + 1);
+						if(arrMonster.get(j).getType()==Actor.BOSS){
+							mBomber.setScore(mBomber.getScore() + 10);
+						}
+						else{
+							mBomber.setScore(mBomber.getScore() + 1);
+						}
+						//GameSound.getIstance().getAudio(GameSound.MONSTER_DIE).play();
 						arrMonster.remove(j);
-
-						SFX.playSound(SFX.monsterDed);
 					}
 				}
             }

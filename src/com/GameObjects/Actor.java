@@ -13,6 +13,7 @@ public class Actor {
     public static final int BOMBER = 1;
     public static final int BOMB = 4;
     public static final int MONSTER = 2;
+    public static final int BOSS = 3;
 
     protected int x, y, type, orient, speed, width, height, runBomb;
     protected Image img;
