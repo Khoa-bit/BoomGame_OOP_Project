@@ -60,6 +60,7 @@ public class PlayGame extends JPanel implements Runnable, ActionListener {
         mMagager.getmBomber().drawActor(g2d);
         mMagager.drawAllShawDow(g2d);
         mMagager.drawInfo(g2d);
+        mMagager.drawBoss(g2d);
         if (mMagager.getStatus() == 1) {
             mMagager.drawDialog(g2d, 1);
         }
