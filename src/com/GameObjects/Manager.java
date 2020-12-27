@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -24,10 +25,11 @@ public class Manager {
     private ArrayList<BombBang> arrBombBang;
     private ArrayList<Monster> arrMonster;
     private ArrayList<HighScore> arrHighScore;
+    private String Background;
     private int round=1;
     private boolean nextRound = true;
     private int status = 0;
-
+    
     public Manager() {
         innitManager();
     }
@@ -80,6 +82,7 @@ public class Manager {
         try {
             FileReader file = new FileReader(pathBox);
             BufferedReader input = new BufferedReader(file);
+            Background = input.readLine();
             String line;
             while ((line = input.readLine()) != null) {
                 String[] str = line.split(":");
@@ -161,6 +164,11 @@ public class Manager {
         }
     }
 
+    public void draWBackground(Graphics2D g2d) {
+		Image imgBackground = new ImageIcon(getClass().getResource("/Images/background_Play1.png")).getImage();
+		g2d.drawImage(imgBackground, 0, 0, null);
+	}
+
     public void innitBomb() {
         int x = mBomber.getX() + mBomber.getWidth() / 2;
         int y = mBomber.getY() + mBomber.getHeight() / 2;
@@ -226,7 +234,10 @@ public class Manager {
         }
     }
     public void drawInfo(Graphics2D g2d) {
+        // Image imgInfor = new ImageIcon(getClass().getResource(
+		// 		"/Images/background_Info.png")).getImage();
         g2d.drawString("SCORE : " + mBomber.getScore(), 740, 200);
+        
 
     }
     public void checkWinAndLose() {

@@ -53,7 +53,8 @@ public class PlayGame extends JPanel implements Runnable, ActionListener {
         Graphics2D g2d = (Graphics2D) g;
         g2d.setStroke(new java.awt.BasicStroke(2));
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-//        draWBackground(g2d);
+        mMagager.draWBackground(g2d);
+        //drawAllItem(g2d);
         mMagager.drawAllBomb(g2d);
         mMagager.drawAllBox(g2d);
         mMagager.drawAllMonster(g2d);
@@ -61,6 +62,7 @@ public class PlayGame extends JPanel implements Runnable, ActionListener {
         mMagager.drawAllShawDow(g2d);
         mMagager.drawInfo(g2d);
         mMagager.drawBoss(g2d);
+        
         if (mMagager.getStatus() == 1) {
             mMagager.drawDialog(g2d, 1);
         }
