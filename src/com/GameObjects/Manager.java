@@ -285,6 +285,9 @@ public class Manager {
         }
     }
 
+    /**
+     * This method is to check whether the bomber has get the new items.
+     */
     public void checkImpactItem() {
         for (int i = 0; i < arrItem.size(); i++) {
             if (arrItem.get(i).isImpactItemVsBomber(mBomber)) {

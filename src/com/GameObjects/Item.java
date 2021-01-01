@@ -61,7 +61,8 @@ public class Item {
         // Create 2 rectangle to check intersection
         Rectangle rec1 = new Rectangle(x, y, width, height);
         Rectangle rec2 = new Rectangle(bomber.getX(), bomber.getY(), bomber.getWidth(), bomber.getHeight());
-        System.out.println("isImpactItem: " + rec1.intersects(rec2));
+        if (rec1.intersects(rec2))
+            System.out.println("isImpactItem: " + rec1.intersects(rec2));
         return rec1.intersects(rec2);
     }
 
