@@ -18,7 +18,7 @@ public class Bomb extends Actor{
         this.orient=0;
         this.timeline = timeline;
         this.type =Actor.BOMB;
-        img= new ImageIcon(getClass().getResource("/Images/bomb.png")).getImage();
+        img= new ImageIcon(getClass().getResource("/Images/boom.png")).getImage();
         this.width= img.getWidth(null);
         this.height= img.getHeight(null);
     }
@@ -33,7 +33,7 @@ public class Bomb extends Actor{
         this.size=size;
         this.timeline = timeline;
         this.type =Actor.BOMB;
-        img= new ImageIcon(getClass().getResource("/Images/bomb.png")).getImage();
+        img= new ImageIcon(getClass().getResource("/Images/boom.png")).getImage();
         this.width = img.getWidth(null);
         this.height = img.getHeight(null);
     }

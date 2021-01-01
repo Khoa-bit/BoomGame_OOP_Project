@@ -237,6 +237,12 @@ public class Manager {
         }
     }
 
+    public void drawBoss(Graphics2D g2d) {
+        for (int i = 0; i < arrMonster.size(); i++) {
+            arrMonster.get(i).drawBoss(g2d);
+        }
+    }
+
     public void drawAllBox(Graphics2D g2d) {
         for (Box box : arrBox) {
             box.drawBox(g2d);
@@ -352,10 +358,13 @@ public class Manager {
                     if (arrMonster.get(j).getHeart() > 1) {
                         arrMonster.get(j).setHeart(arrMonster.get(j).getHeart() - 1);
                     } else {
-                        mBomber.setScore(mBomber.getScore() + 1);
+                        if (arrMonster.get(j).getType() == Actor.BOSS) {
+                            mBomber.setScore(mBomber.getScore() + 10);
+                        } else {
+                            mBomber.setScore(mBomber.getScore() + 1);
+                        }
+                        // GameSound.getIstance().getAudio(GameSound.MONSTER_DIE).play();
                         arrMonster.remove(j);
-
-                        SFX.playSound(SFX.monsterDed);
                     }
                 }
             }

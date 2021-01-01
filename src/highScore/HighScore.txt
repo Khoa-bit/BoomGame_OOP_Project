@@ -6,5 +6,5 @@ Khoa Sieu Nhan:20
 Oanh Oanh:15
 Dat deptrai:10
 null:6
-Dat:6
+null:6
 null:6

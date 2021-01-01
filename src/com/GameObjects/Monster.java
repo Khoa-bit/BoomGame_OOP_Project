@@ -35,6 +35,20 @@ public class Monster extends Actor{
 	public void setHeart(int heart) {
 		this.heart = heart;
 	}
+
+	public void drawBoss(Graphics2D g2d){
+		if(type == Actor.BOSS){
+			g2d.drawImage(img, x, y-38, null);
+			g2d.setColor(Color.WHITE);
+			g2d.drawRect(x+13, y-54, width-26, 12);
+			Image imgHeartBoss = new ImageIcon(getClass().getResource("/Images/heart_boss.png")).getImage();
+			int a=0;
+			for(int i=0;i<(heart-1)/250+1 ;i++){
+			g2d.drawImage(imgHeartBoss, x+18+a, y-52, null);
+				a=a+10;
+			}
+		}
+	}
 	
 	@Override
 	public void changeOrient(int orient) {
@@ -52,6 +66,25 @@ public class Monster extends Actor{
 				break;
 			case DOWN:
 				img = new ImageIcon(getClass().getResource("/Images/monster_down.png")).getImage();
+				break;
+			default:
+				break;
+			}
+		}
+		else
+		{
+			switch (orient) {
+			case LEFT:
+				img = new ImageIcon(getClass().getResource("/Images/boss_left.png")).getImage();
+				break;
+			case RIGHT:
+				img = new ImageIcon(getClass().getResource("/Images/boss_right.png")).getImage();
+				break;
+			case UP:
+				img = new ImageIcon(getClass().getResource("/Images/boss_up.png")).getImage();
+				break;
+			case DOWN:
+				img = new ImageIcon(getClass().getResource("/Images/boss_down.png")).getImage();
 				break;
 			default:
 				break;

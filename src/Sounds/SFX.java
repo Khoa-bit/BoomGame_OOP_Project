@@ -10,7 +10,7 @@ public class SFX {
     public static String ded = "src/Sounds/ded.wav";
     public static String item = "src/Sounds/item.wav";
     public static String background = "src/Sounds/soundGame.wav";
-    public static String menu = "src/Sounds/menu.wav";
+    public static String menu = "src/Sounds/soundMenu.wav";
     public static String exit = "src/Sounds/bye_bye.wav";
     public static String click = "src/Sounds/click.wav";
     public static String monsterDed = "src/Sounds/monster_ded.wav";
