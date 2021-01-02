@@ -125,6 +125,7 @@ public class PlayGame extends JPanel implements Runnable, ActionListener {
             }
             mMagager.setRunBomer();
             mMagager.deadLineAllBomb();
+            mMagager.checkDead();
             mMagager.checkImpactItem();
             mMagager.checkWinAndLose();
 

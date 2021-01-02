@@ -5,7 +5,7 @@ package com.GameObjects;
 import Sounds.SFX;
 
 import com.GUI.GUI;
-
+import java.awt.Image;
 import javax.swing.*;
 import java.awt.Color;
 import java.awt.Font;
@@ -263,6 +263,33 @@ public class Manager {
     public void drawAllItem(Graphics2D g2d) {
         for (int i = 0; i < arrItem.size(); i++) {
             arrItem.get(i).drawItem(g2d);
+        }
+    }
+
+    public void checkDead() {
+        for (int i = 0; i < arrBombBang.size(); i++) {
+            if (arrBombBang.get(i).isImpactBombBangVsActor(mBomber) && mBomber.getStatus() == Bomber.ALIVE) {
+                Image icon = new ImageIcon(getClass().getResource("/Images/bomber_dead.png")).getImage();
+                mBomber.setImg(icon);
+                if (mBomber.getStatus() == Bomber.DEAD) {
+                    return;
+                }
+                mBomber.setHeart(mBomber.getHeart() - 1);
+                mBomber.setStatus(Bomber.DEAD);
+                SFX.playSound(SFX.ded);
+            }
+        }
+        for (int i = 0; i < arrMonster.size(); i++) {
+            if (mBomber.isImpactBomberVsActor(arrMonster.get(i))) {
+                Image icon = new ImageIcon(getClass().getResource("/Images/ghost.png")).getImage();
+                mBomber.setImg(icon);
+                if (mBomber.getStatus() == Bomber.DEAD) {
+                    return;
+                }
+                mBomber.setHeart(mBomber.getHeart() - 1);
+                mBomber.setStatus(Bomber.DEAD);
+                SFX.playSound(SFX.ded);
+            }
         }
     }
 
