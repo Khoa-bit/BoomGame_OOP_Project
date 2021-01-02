@@ -59,7 +59,6 @@ public class PlayGame extends JPanel implements Runnable, ActionListener {
                                    // front of all the items
         mMagager.drawAllBox(g2d);
         mMagager.drawAllMonster(g2d);
-
         mMagager.getmBomber().drawActor(g2d);
         mMagager.drawAllShawDow(g2d);
         mMagager.drawInfo(g2d);
