@@ -29,6 +29,7 @@ public class Manager {
     private int round = 1;
     private boolean nextRound = true;
     private int status = 0;
+    private String Background;
 
     public Manager() {
         innitManager();
@@ -38,7 +39,7 @@ public class Manager {
         System.out.print("Manager init");
         switch (round) {
             case 1:
-                mBomber = new Bomber(0, 540, Actor.BOMBER, Actor.DOWN, 3, 2, 10);
+                mBomber = new Bomber(0, 540, Actor.BOMBER, Actor.DOWN, 3, 1, 1);
                 innit("src/Map1/BOX.txt", "src/Map1/SHADOW.txt", "src/Map1/MONSTER.txt", "src/Map1/ITEM.txt");
                 nextRound = true;
                 status = 0;
@@ -108,6 +109,7 @@ public class Manager {
         try {
             FileReader file = new FileReader(pathBox);
             BufferedReader input = new BufferedReader(file);
+            Background = input.readLine();
             String line;
             while ((line = input.readLine()) != null) {
                 String[] str = line.split(":");
@@ -255,7 +257,31 @@ public class Manager {
         }
     }
 
+    public void drawBackground(Graphics2D g2d) {
+        Image imgBackground = new ImageIcon(getClass().getResource("/Images/background_Play.png")).getImage();
+        g2d.drawImage(imgBackground, 0, 0, null);
+    }
+
     public void drawInfo(Graphics2D g2d) {
+        Image imgInfor = new ImageIcon(getClass().getResource("/Images/background_Info.png")).getImage();
+        g2d.setFont(new Font("Arial", Font.BOLD, 20));
+        g2d.setColor(Color.RED);
+        g2d.drawImage(imgInfor, 675, 0, null);
+        g2d.drawString("HEART", 755, 100);
+        Image heart = new ImageIcon(getClass().getResource("/Images/heart_1.png")).getImage();
+        if (mBomber.getHeart() == 3) {
+            g2d.drawImage(heart, 750, 120, null);
+            g2d.drawImage(heart, 775, 120, null);
+            g2d.drawImage(heart, 800, 120, null);
+        }
+        if (mBomber.getHeart() == 2) {
+            g2d.drawImage(heart, 760, 120, null);
+            g2d.drawImage(heart, 790, 120, null);
+        }
+        if (mBomber.getHeart() == 1) {
+            g2d.drawImage(heart, 775, 120, null);
+        }
+
         g2d.drawString("SCORE : " + mBomber.getScore(), 740, 200);
 
     }
