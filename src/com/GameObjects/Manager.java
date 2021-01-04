@@ -210,6 +210,23 @@ public class Manager {
         arrBomb.add(mBomb);
     }
 
+    public void setNewBomber() {
+        switch (round) {
+            case 1:
+                mBomber.setNew(0, 540);
+                break;
+            case 2:
+                mBomber.setNew(315, 270);
+                break;
+            case 3:
+                mBomber.setNew(315, 495);
+                break;
+
+            default:
+                break;
+        }
+    }
+
     public void drawDialog(Graphics2D g2d, int type) {
         g2d.setFont(new Font("Arial", Font.BOLD, 70));
         g2d.setColor(Color.RED);
