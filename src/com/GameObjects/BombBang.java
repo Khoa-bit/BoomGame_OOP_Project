@@ -25,16 +25,16 @@ public class BombBang {
         for (int i = 1; i < size; i++) {
             int tmp_left = 0, tmp_right = 0, tmp_up = 0, tmp_dow = 0;
             for (Box box : arrBox) {
-                if (isImpactBox(x - (i) * 45, y, (i + 1) * 45, 45, box)) {
+                if (doesImpactOldBox(x - (i) * 45, y, (i + 1) * 45, 45, box)) {
                     tmp_left = 1;
                 }
-                if (isImpactBox(x, y, (i + 1) * 45, 45, box)) {
+                if (doesImpactOldBox(x, y, (i + 1) * 45, 45, box)) {
                     tmp_right = 1;
                 }
-                if (isImpactBox(x, y - (i * 45), 45, (i + 1) * 45, box)) {
+                if (doesImpactOldBox(x, y - (i * 45), 45, (i + 1) * 45, box)) {
                     tmp_up = 1;
                 }
-                if (isImpactBox(x, y, 45, (i + 1) * 45, box)) {
+                if (doesImpactOldBox(x, y, 45, (i + 1) * 45, box)) {
                     tmp_dow = 1;
                 }
             }
@@ -103,7 +103,7 @@ public class BombBang {
         return false;
     }
 
-    private boolean isImpactBox(int x, int y, int width, int height, Box box) {
+    private boolean doesImpactOldBox(int x, int y, int width, int height, Box box) {
         Rectangle oldBomb = new Rectangle(x, y, width, height);
         Rectangle newBomb = new Rectangle(box.getX(), box.getY(), box.getWidth(), box.getHeight());
         return oldBomb.intersects(newBomb);
