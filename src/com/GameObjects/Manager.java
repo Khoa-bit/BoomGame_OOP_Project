@@ -36,10 +36,10 @@ public class Manager {
     }
 
     public void innitManager() {
-       // System.out.print("Manager init");
+        // System.out.print("Manager init");
         switch (round) {
             case 1:
-                mBomber = new Bomber(0, 540, Actor.BOMBER, Actor.DOWN, 3, 1, 2);
+                mBomber = new Bomber(0, 540, Character.BOMBER, Character.DOWN, 3, 1, 2);
                 innit("src/Map1/BOX.txt", "src/Map1/SHADOW.txt", "src/Map1/MONSTER.txt", "src/Map1/ITEM.txt");
                 nextRound = true;
                 status = 0;
@@ -243,7 +243,7 @@ public class Manager {
 
     public void drawAllBomb(Graphics2D g2d) {
         for (int i = 0; i < arrBomb.size(); i++) {
-            arrBomb.get(i).drawActor(g2d);
+            arrBomb.get(i).drawCharacter(g2d);
         }
         for (int i = 0; i < arrBombBang.size(); i++) {
             arrBombBang.get(i).drawBongBang(g2d);
@@ -252,7 +252,7 @@ public class Manager {
 
     public void drawAllMonster(Graphics2D g2d) {
         for (int i = 0; i < arrMonster.size(); i++) {
-            arrMonster.get(i).drawActor(g2d);
+            arrMonster.get(i).drawCharacter(g2d);
         }
     }
 
@@ -311,7 +311,7 @@ public class Manager {
 
     public void checkDead() {
         for (int i = 0; i < arrBombBang.size(); i++) {
-            if (arrBombBang.get(i).isImpactBombBangVsActor(mBomber) && mBomber.getStatus() == Bomber.ALIVE) {
+            if (arrBombBang.get(i).isImpactBombBangVsCharacter(mBomber) && mBomber.getStatus() == Bomber.ALIVE) {
                 Image icon = new ImageIcon(getClass().getResource("/Images/bomber_dead.png")).getImage();
                 mBomber.setImg(icon);
                 if (mBomber.getStatus() == Bomber.DEAD) {
@@ -323,7 +323,7 @@ public class Manager {
             }
         }
         for (int i = 0; i < arrMonster.size(); i++) {
-            if (mBomber.isImpactBomberVsActor(arrMonster.get(i))) {
+            if (mBomber.isImpactBomberVsCharacter(arrMonster.get(i))) {
                 Image icon = new ImageIcon(getClass().getResource("/Images/ghost.png")).getImage();
                 mBomber.setImg(icon);
                 if (mBomber.getStatus() == Bomber.DEAD) {
@@ -424,11 +424,11 @@ public class Manager {
         for (int k = 0; k < arrBombBang.size(); k++) {
             arrBombBang.get(k).deadlineBomb();
             for (int j = 0; j < arrMonster.size(); j++) {
-                if (arrBombBang.get(k).isImpactBombBangVsActor(arrMonster.get(j))) {
+                if (arrBombBang.get(k).isImpactBombBangVsCharacter(arrMonster.get(j))) {
                     if (arrMonster.get(j).getHeart() > 1) {
                         arrMonster.get(j).setHeart(arrMonster.get(j).getHeart() - 1);
                     } else {
-                        if (arrMonster.get(j).getType() == Actor.BOSS) {
+                        if (arrMonster.get(j).getType() == Character.BOSS) {
                             mBomber.setScore(mBomber.getScore() + 10);
                         } else {
                             mBomber.setScore(mBomber.getScore() + 1);
