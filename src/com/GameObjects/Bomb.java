@@ -60,7 +60,7 @@ public class Bomb extends Character {
         this.timeline = timeline;
     }
 
-    public boolean isImpact(int xNewBomb, int yNewBomb) {
+    public boolean doesImpactNewBomb(int xNewBomb, int yNewBomb) {
         Rectangle rec1 = new Rectangle(x, y, GUI.TILES, GUI.TILES);
         Rectangle rec2 = new Rectangle(xNewBomb, yNewBomb, GUI.TILES, GUI.TILES);
         return rec1.intersects(rec2);
