@@ -55,7 +55,7 @@ public class Character {
                 }
 
                 for (Box box : arrBox) {
-                    int kq = box.doesBoxImpactCharacter(this);
+                    int kq = box.doesCharacterImpactBox(this);
                     if (kq != 0) {
                         if (kq >= -20 && kq <= 20) {
                             if (kq > 0) {
@@ -84,7 +84,7 @@ public class Character {
                 }
 
                 for (Box box : arrBox) {
-                    int kq = box.doesBoxImpactCharacter(this);
+                    int kq = box.doesCharacterImpactBox(this);
                     if (kq != 0) {
                         if (kq >= -20 && kq <= 20) {
                             if (kq > 0) {
@@ -113,7 +113,7 @@ public class Character {
                 }
 
                 for (Box box : arrBox) {
-                    int kq = box.doesBoxImpactCharacter(this);
+                    int kq = box.doesCharacterImpactBox(this);
                     if (kq != 0) {
                         if (kq >= -20 && kq <= 20) {
                             if (kq > 0) {
@@ -142,7 +142,7 @@ public class Character {
                 }
 
                 for (Box box : arrBox) {
-                    int kq = box.doesBoxImpactCharacter(this);
+                    int kq = box.doesCharacterImpactBox(this);
                     if (kq != 0) {
                         if (kq >= -20 && kq <= 20) {
                             if (kq > 0) {
