@@ -36,10 +36,10 @@ public class Manager {
     }
 
     public void innitManager() {
-        System.out.print("Manager init");
+       // System.out.print("Manager init");
         switch (round) {
             case 1:
-                mBomber = new Bomber(0, 540, Actor.BOMBER, Actor.DOWN, 3, 1, 1);
+                mBomber = new Bomber(0, 540, Actor.BOMBER, Actor.DOWN, 3, 1, 2);
                 innit("src/Map1/BOX.txt", "src/Map1/SHADOW.txt", "src/Map1/MONSTER.txt", "src/Map1/ITEM.txt");
                 nextRound = true;
                 status = 0;
@@ -275,7 +275,7 @@ public class Manager {
     }
 
     public void drawBackground(Graphics2D g2d) {
-        Image imgBackground = new ImageIcon(getClass().getResource("/Images/background_Play.png")).getImage();
+        Image imgBackground = new ImageIcon(getClass().getResource("/Images/background2.png")).getImage();
         g2d.drawImage(imgBackground, 0, 0, null);
     }
 
@@ -433,7 +433,7 @@ public class Manager {
                         } else {
                             mBomber.setScore(mBomber.getScore() + 1);
                         }
-                        // GameSound.getIstance().getAudio(GameSound.MONSTER_DIE).play();
+                        SFX.playSound(SFX.monsterDead);
                         arrMonster.remove(j);
                     }
                 }
