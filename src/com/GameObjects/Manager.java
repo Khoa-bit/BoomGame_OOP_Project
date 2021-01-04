@@ -196,7 +196,7 @@ public class Manager {
         int x = mBomber.getX() + mBomber.getWidth() / 2;
         int y = mBomber.getY() + mBomber.getHeight() / 2;
         for (int i = 0; i < arrBomb.size(); i++) {
-            if (arrBomb.get(i).isImpact(x, y)) {
+            if (arrBomb.get(i).doesImpactNewBomb(x, y)) {
                 return;
             }
         }
@@ -311,7 +311,7 @@ public class Manager {
 
     public void checkDead() {
         for (int i = 0; i < arrBombBang.size(); i++) {
-            if (arrBombBang.get(i).isImpactBombBangVsCharacter(mBomber) && mBomber.getStatus() == Bomber.ALIVE) {
+            if (arrBombBang.get(i).doesBombBangImpactCharacter(mBomber) && mBomber.getStatus() == Bomber.ALIVE) {
                 Image icon = new ImageIcon(getClass().getResource("/Images/bomber_dead.png")).getImage();
                 mBomber.setImg(icon);
                 if (mBomber.getStatus() == Bomber.DEAD) {
@@ -366,7 +366,7 @@ public class Manager {
      */
     public void checkImpactItem() {
         for (int i = 0; i < arrItem.size(); i++) {
-            if (arrItem.get(i).isImpactItemVsBomber(mBomber)) {
+            if (arrItem.get(i).doesBomberImpactItem(mBomber)) {
                 SFX.playSound(SFX.item);
                 if (arrItem.get(i).getType() == Item.Item_Bomb) {
                     mBomber.setQuantityBomb(mBomber.getQuantityBomb() + 1);
@@ -403,7 +403,7 @@ public class Manager {
 
         for (int i = 0; i < arrBombBang.size(); i++) {
             for (int j = 0; j < arrBomb.size(); j++) {
-                if (arrBombBang.get(i).isImpactBombBangvsBomb(arrBomb.get(j))) {
+                if (arrBombBang.get(i).doesBombBangImpactBomb(arrBomb.get(j))) {
                     BombBang bomBang = new BombBang(arrBomb.get(j).getX(), arrBomb.get(j).getY(),
                             arrBomb.get(j).getSize(), arrBox);
                     arrBombBang.add(bomBang);
@@ -424,7 +424,7 @@ public class Manager {
         for (int k = 0; k < arrBombBang.size(); k++) {
             arrBombBang.get(k).deadlineBomb();
             for (int j = 0; j < arrMonster.size(); j++) {
-                if (arrBombBang.get(k).isImpactBombBangVsCharacter(arrMonster.get(j))) {
+                if (arrBombBang.get(k).doesBombBangImpactCharacter(arrMonster.get(j))) {
                     if (arrMonster.get(j).getHeart() > 1) {
                         arrMonster.get(j).setHeart(arrMonster.get(j).getHeart() - 1);
                     } else {
@@ -441,7 +441,7 @@ public class Manager {
         }
         for (int i = 0; i < arrBombBang.size(); i++) {
             for (int j = 0; j < arrBox.size(); j++) {
-                if (arrBombBang.get(i).isImpactBombBangvsBox(arrBox.get(j))) {
+                if (arrBombBang.get(i).doesBombBangImpactBox(arrBox.get(j))) {
                     arrBox.remove(j);
                     arrShadow.remove(j);
                 }

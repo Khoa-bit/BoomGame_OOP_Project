@@ -57,7 +57,7 @@ public class Item {
         this.timeLine = timeLine;
     }
 
-    public boolean isImpactItemVsBomber(Bomber bomber) {
+    public boolean doesBomberImpactItem(Bomber bomber) {
         // Create 2 rectangle to check intersection
         Rectangle rec1 = new Rectangle(x, y, width, height);
         Rectangle rec2 = new Rectangle(bomber.getX(), bomber.getY(), bomber.getWidth(), bomber.getHeight());
