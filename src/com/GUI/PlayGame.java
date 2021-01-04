@@ -56,8 +56,6 @@ public class PlayGame extends JPanel implements Runnable, ActionListener {
         mMagager.draWBackground(g2d);
         //drawAllItem(g2d);
         mMagager.drawAllBomb(g2d);
-        mMagager.drawAllItem(g2d); // Implements drawAllItem before drawAllBox so that all the boxs will be in
-                                   // front of all the items
         mMagager.drawAllBox(g2d);
         mMagager.drawAllMonster(g2d);
         mMagager.getmBomber().drawActor(g2d);
@@ -74,6 +72,12 @@ public class PlayGame extends JPanel implements Runnable, ActionListener {
         if (mMagager.getStatus() == 3) {
             mMagager.drawDialog(g2d, 3);
         }
+    }
+
+    public void draWBackground(Graphics2D g2d) {
+        Image imgBackground = new ImageIcon(getClass().getResource("/Images/background_Play.png"))
+                .getImage();
+        g2d.drawImage(imgBackground, 0, 0, null);
     }
 
     private KeyAdapter keyAdapter = new KeyAdapter() {
@@ -121,8 +125,6 @@ public class PlayGame extends JPanel implements Runnable, ActionListener {
             }
             mMagager.setRunBomer();
             mMagager.deadLineAllBomb();
-            mMagager.checkDead();
-            mMagager.checkImpactItem();
             mMagager.checkWinAndLose();
 
             if (mMagager.getStatus() == 1) {
@@ -151,18 +153,18 @@ public class PlayGame extends JPanel implements Runnable, ActionListener {
                 }
             }
 
-            if (move == 0) {
-                mMagager.changeOrientAll();
-                move = 5000;
-            }
-            if (move > 0) {
-                move--;
-            }
-            mMagager.moveAllMonster(count);
-            repaint();
-            count++;
-            if (count == 1000000) {
-                count = 0;
+            if(move==0){
+				mMagager.changeOrientAll();
+				move=5000;
+			}
+			if(move>0){
+				move--;
+			}
+			mMagager.moveAllMonster(count);
+			repaint();
+			count++;
+			if(count==1000000){
+				count=0;
             }
         }
 
@@ -179,3 +181,4 @@ public class PlayGame extends JPanel implements Runnable, ActionListener {
 
     }
 }
+
