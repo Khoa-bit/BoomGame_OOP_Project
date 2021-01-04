@@ -90,11 +90,17 @@ public class Bomber extends Actor{
 
     @Override
     public boolean move(int count, ArrayList<Bomb> arrBomb, ArrayList<Box> arrBox) {
+        if(status==DEAD){
+            return false;
+        }
         return super.move(count, arrBomb, arrBox);
     }
 
     @Override
     public void changeOrient(int orient) {
+        if(status==DEAD){
+            return;
+        }
         super.changeOrient(orient);
         switch (orient) {
             case LEFT:

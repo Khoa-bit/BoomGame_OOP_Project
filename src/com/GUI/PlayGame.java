@@ -153,18 +153,26 @@ public class PlayGame extends JPanel implements Runnable, ActionListener {
                 }
             }
 
-            if(move==0){
-				mMagager.changeOrientAll();
-				move=5000;
-			}
-			if(move>0){
-				move--;
-			}
-			mMagager.moveAllMonster(count);
-			repaint();
-			count++;
-			if(count==1000000){
-				count=0;
+            if(mMagager.getmBomber().getStatus()==Bomber.DEAD){
+                timeDead++;
+                if(timeDead==3000){
+                    mMagager.setNewBomber();
+                    timeDead=0;
+                }
+            }
+
+            if (move == 0) {
+                mMagager.changeOrientAll();
+                move = 5000;
+            }
+            if (move > 0) {
+                move--;
+            }
+            mMagager.moveAllMonster(count);
+            repaint();
+            count++;
+            if (count == 1000000) {
+                count = 0;
             }
         }
 

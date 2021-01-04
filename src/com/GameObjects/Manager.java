@@ -35,10 +35,11 @@ public class Manager {
     }
 
     public void innitManager() {
+       // System.out.print("Manager init");
         switch (round) {
             case 1:
-                mBomber = new Bomber(0, 540, Actor.BOMBER, Actor.DOWN, 3, 2, 10);
-                innit("src/Map1/BOX.txt", "src/Map1/SHADOW.txt","src/Map1/MONSTER.txt");
+                mBomber = new Bomber(0, 540, Actor.BOMBER, Actor.DOWN, 3, 1, 2);
+                innit("src/Map1/BOX.txt", "src/Map1/SHADOW.txt", "src/Map1/MONSTER.txt", "src/Map1/ITEM.txt");
                 nextRound = true;
                 status = 0;
                 break;
@@ -187,6 +188,23 @@ public class Manager {
         arrBomb.add(mBomb);
     }
 
+    public void setNewBomber() {
+        switch (round) {
+            case 1:
+                mBomber.setNew(0, 540);
+                break;
+            case 2:
+                mBomber.setNew(315, 270);
+                break;
+            case 3:
+                mBomber.setNew(315, 495);
+                break;
+
+            default:
+                break;
+        }
+    }
+
     public void drawDialog(Graphics2D g2d, int type) {
         g2d.setFont(new Font("Arial", Font.BOLD, 70));
         g2d.setColor(Color.RED);
@@ -233,6 +251,12 @@ public class Manager {
             shadow.drawBox(g2d);
         }
     }
+
+    public void drawBackground(Graphics2D g2d) {
+        Image imgBackground = new ImageIcon(getClass().getResource("/Images/background2.png")).getImage();
+        g2d.drawImage(imgBackground, 0, 0, null);
+    }
+
     public void drawInfo(Graphics2D g2d) {
         // Image imgInfor = new ImageIcon(getClass().getResource(
 		// 		"/Images/background_Info.png")).getImage();
@@ -299,12 +323,19 @@ public class Manager {
             }
         }
         for (int k = 0; k < arrBombBang.size(); k++) {
-			arrBombBang.get(k).deadlineBomb();
-			for (int j = 0; j < arrMonster.size(); j++) {
-                if (arrBombBang.get(k).isImpactBombBangVsActor(
-						arrMonster.get(j))) {
-					if(arrMonster.get(j).getHeart()>1){
-						arrMonster.get(j).setHeart(arrMonster.get(j).getHeart()-1);
+            arrBombBang.get(k).deadlineBomb();
+            for (int j = 0; j < arrMonster.size(); j++) {
+                if (arrBombBang.get(k).isImpactBombBangVsActor(arrMonster.get(j))) {
+                    if (arrMonster.get(j).getHeart() > 1) {
+                        arrMonster.get(j).setHeart(arrMonster.get(j).getHeart() - 1);
+                    } else {
+                        if (arrMonster.get(j).getType() == Actor.BOSS) {
+                            mBomber.setScore(mBomber.getScore() + 10);
+                        } else {
+                            mBomber.setScore(mBomber.getScore() + 1);
+                        }
+                        SFX.playSound(SFX.monsterDead);
+                        arrMonster.remove(j);
                     }
                     else{
 						if(arrMonster.get(j).getType()==Actor.BOSS){
