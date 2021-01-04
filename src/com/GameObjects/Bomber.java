@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.awt.Rectangle;
 import javax.swing.ImageIcon;
 
-public class Bomber extends Actor {
+public class Bomber extends Character {
     public static int ALLOW_RUN = 0;
     public static int DISALLOW_RUN = 1;
     protected int sizeBomb, quantityBomb, status, score, heart;
@@ -21,7 +21,7 @@ public class Bomber extends Actor {
         this.quantityBomb = quantityBomb;
         this.heart = 3;
         this.score = 0;
-        this.status = Actor.ALIVE;
+        this.status = Character.ALIVE;
         this.img = new ImageIcon(getClass().getResource("/Images/bomber_down.png")).getImage();
         width = img.getWidth(null);
         height = img.getHeight(null) - 20;
@@ -90,7 +90,7 @@ public class Bomber extends Actor {
 
     @Override
     public boolean move(int count, ArrayList<Bomb> arrBomb, ArrayList<Box> arrBox) {
-        if(status==DEAD){
+        if (status == DEAD) {
             return false;
         }
         return super.move(count, arrBomb, arrBox);
@@ -98,7 +98,7 @@ public class Bomber extends Actor {
 
     @Override
     public void changeOrient(int orient) {
-        if(status==DEAD){
+        if (status == DEAD) {
             return;
         }
         super.changeOrient(orient);
@@ -120,12 +120,12 @@ public class Bomber extends Actor {
         }
     }
 
-    public boolean isImpactBomberVsActor(Actor actor) {
+    public boolean isImpactBomberVsCharacter(Character character) {
         if (status == DEAD) {
             return false;
         }
         Rectangle rec1 = new Rectangle(x, y, width, height);
-        Rectangle rec2 = new Rectangle(actor.getX(), actor.getY(), actor.getWidth(), actor.getHeight());
+        Rectangle rec2 = new Rectangle(character.getX(), character.getY(), character.getWidth(), character.getHeight());
         return rec1.intersects(rec2);
     }
 
