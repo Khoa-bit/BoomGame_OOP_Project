@@ -24,24 +24,26 @@ public class Box {
 
     }
 
-    public int doesBoxImpactCharacter(Character character) {
-        Rectangle rec1 = new Rectangle(x, y, width, height);
-        Rectangle rec2 = new Rectangle(character.getX(), character.getY(), character.getWidth(), character.getHeight());
-        Rectangle rec3 = new Rectangle();
-        if (rec1.intersects(rec2)) {
-            Rectangle2D.intersect(rec1, rec2, rec3);
-            if (rec3.getHeight() == 1
+    public int doesCharacterImpactBox(Character character) {
+        Rectangle boxRectangle = new Rectangle(x, y, width, height);
+        Rectangle characterRectangle = new Rectangle(character.getX(), character.getY(), character.getWidth(),
+                character.getHeight());
+        Rectangle intersectRectangle = new Rectangle();
+
+        if (boxRectangle.intersects(characterRectangle)) {
+            Rectangle2D.intersect(boxRectangle, characterRectangle, intersectRectangle);
+            if (intersectRectangle.getHeight() == 1
                     && (character.getOrient() == Character.UP || character.getOrient() == Character.DOWN)) {
-                if (character.getX() == rec3.getX()) {
-                    return (int) rec3.getWidth();
+                if (character.getX() == intersectRectangle.getX()) {
+                    return (int) intersectRectangle.getWidth();
                 } else {
-                    return (int) -rec3.getWidth();
+                    return (int) -intersectRectangle.getWidth();
                 }
             } else {
-                if (character.getY() == rec3.getY()) {
-                    return (int) rec3.getHeight();
+                if (character.getY() == intersectRectangle.getY()) {
+                    return (int) intersectRectangle.getHeight();
                 } else {
-                    return (int) -rec3.getHeight();
+                    return (int) -intersectRectangle.getHeight();
                 }
             }
         }
