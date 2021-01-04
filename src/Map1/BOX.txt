@@ -1,3 +1,4 @@
+0:0:false:/Images/box1.png
 0:1:false:/Images/box1.png
 0:3:false:/Images/box1.png
 0:5:false:/Images/box1.png
