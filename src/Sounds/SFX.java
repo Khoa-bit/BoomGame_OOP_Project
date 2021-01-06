@@ -9,14 +9,16 @@ public class SFX {
     public static String boomBang = "src/Sounds/boom_bang.wav";
     public static String ded = "src/Sounds/ded.wav";
     public static String item = "src/Sounds/item.wav";
-    public static String background = "src/Sounds/soundGame.wav";
+    public static String background = "src/Sounds/playgame.wav";
     public static String menu = "src/Sounds/soundMenu.wav";
     public static String start = "src/Sounds/start.wav";
     public static String exit = "src/Sounds/bye_bye.wav";
     public static String click = "src/Sounds/click.wav";
+    public static String highScore = "src/Sounds/wait.wav";
     public static String monsterDead = "src/Sounds/monster_dead.wav";
     public static String placeBoom = "src/Sounds/place-bomb.wav";
     public static String victory = "src/Sounds/Victory.wav";
+    public static String win = "src/Sounds/win.wav";
     public static String lose = "src/Sounds/lose.wav";
 
     public static ArrayList<Clip> continuousClip = new ArrayList<>();

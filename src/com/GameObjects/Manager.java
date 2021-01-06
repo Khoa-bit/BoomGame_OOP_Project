@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Random;
+import java.util.Date;
 
 public class Manager {
     private Random random = new Random();
@@ -37,23 +38,17 @@ public class Manager {
     }
 
     public void innitManager() {
-<<<<<<< HEAD
        // System.out.print("Manager init");
         switch (round) {
             case 1:
                 mBomber = new Bomber(0, 540, Actor.BOMBER, Actor.DOWN, 3, 1, 2);
-=======
-        System.out.print("Manager init");
-        switch (round) {
-            case 1:
-                mBomber = new Bomber(0, 540, Actor.BOMBER, Actor.DOWN, 3, 1, 1);
->>>>>>> parent of 1ae9191... Revert "Merge branch 'DatContributor2' into MaiOanhsuperhero"
                 innit("src/Map1/BOX.txt", "src/Map1/SHADOW.txt", "src/Map1/MONSTER.txt", "src/Map1/ITEM.txt");
                 nextRound = true;
                 status = 0;
                 break;
 
             case 2:
+                
                 mBomber.setNew(315, 270);
                 innit("src/Map2/BOX.txt", "src/Map2/SHADOW.txt", "src/Map2/MONSTER.txt", "src/Map2/ITEM.txt");
                 nextRound = true;
@@ -288,11 +283,7 @@ public class Manager {
     }
 
     public void drawBackground(Graphics2D g2d) {
-<<<<<<< HEAD
         Image imgBackground = new ImageIcon(getClass().getResource("/Images/background2.png")).getImage();
-=======
-        Image imgBackground = new ImageIcon(getClass().getResource("/Images/background_Play.png")).getImage();
->>>>>>> parent of 1ae9191... Revert "Merge branch 'DatContributor2' into MaiOanhsuperhero"
         g2d.drawImage(imgBackground, 0, 0, null);
     }
 
@@ -363,6 +354,7 @@ public class Manager {
             SFX.playSound(SFX.lose);
             saveScore();
         }
+        
         if (arrMonster.size() == 0 && nextRound) {
             if (round == 3) {
                 status = 3;
@@ -373,6 +365,7 @@ public class Manager {
                 round = 1;
                 return;
             }
+
             round = round + 1;
             nextRound = false;
             status = 2;
@@ -451,11 +444,7 @@ public class Manager {
                         } else {
                             mBomber.setScore(mBomber.getScore() + 1);
                         }
-<<<<<<< HEAD
                         SFX.playSound(SFX.monsterDead);
-=======
-                        // GameSound.getIstance().getAudio(GameSound.MONSTER_DIE).play();
->>>>>>> parent of 1ae9191... Revert "Merge branch 'DatContributor2' into MaiOanhsuperhero"
                         arrMonster.remove(j);
                     }
                 }

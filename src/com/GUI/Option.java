@@ -33,11 +33,13 @@ public class Option extends JPanel implements ActionListener {
         btn_ok.setBounds(400, 520, 100, 50);
         btn_ok.addActionListener(this);
         add(btn_ok);
+        
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource()==btn_ok){
+        if(e.getSource() == btn_ok){
+            SFX.stopAllClip();
             SFX.playSound(SFX.click);
             mContainer.setShowMenu();
         }

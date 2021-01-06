@@ -32,6 +32,7 @@ public class HighScorePanel extends JPanel implements ActionListener{
 		setBackground(Color.YELLOW);
 		setLayout(null);
 		initComponents();
+		//SFX.stopAllClip();
 	}
 	
 	public void initComponents(){
@@ -42,6 +43,8 @@ public class HighScorePanel extends JPanel implements ActionListener{
 		btn_ok.setBounds(400, 520, 100, 50);
 		btn_ok.addActionListener(this);
 		add(btn_ok);
+		SFX.stopAllClip();
+		
 	}
 	@Override
 	protected void paintComponent(Graphics g) {
@@ -96,8 +99,11 @@ public class HighScorePanel extends JPanel implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==btn_ok){
+			//SFX.stopAllClip();
 			SFX.playSound(SFX.click);
+			SFX.stopAllClip();
 			mContainer.setShowMenu();
+			
 		}	
 	}
 }

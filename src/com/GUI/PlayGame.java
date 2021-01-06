@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.BitSet;
-
+import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -132,6 +132,7 @@ public class PlayGame extends JPanel implements Runnable, ActionListener {
                     mContainer.setShowMenu();
                     timeLose = 0;
                 }
+            
             }
 
             if (mMagager.getStatus() == 2) {
@@ -151,7 +152,6 @@ public class PlayGame extends JPanel implements Runnable, ActionListener {
                 }
             }
 
-<<<<<<< HEAD
             if(mMagager.getmBomber().getStatus()==Bomber.DEAD){
                 timeDead++;
                 if(timeDead==3000){
@@ -160,8 +160,6 @@ public class PlayGame extends JPanel implements Runnable, ActionListener {
                 }
             }
 
-=======
->>>>>>> parent of 1ae9191... Revert "Merge branch 'DatContributor2' into MaiOanhsuperhero"
             if (move == 0) {
                 mMagager.changeOrientAll();
                 move = 5000;
