@@ -18,6 +18,7 @@ public class SFX {
     public static String placeBoom = "src/Sounds/place-bomb.wav";
     public static String victory = "src/Sounds/Victory.wav";
     public static String lose = "src/Sounds/lose.wav";
+    public static String highScore = "src/Sounds/wait.wav";
 
     public static ArrayList<Clip> continuousClip = new ArrayList<>();
 

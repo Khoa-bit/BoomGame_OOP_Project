@@ -116,6 +116,7 @@ public class Menu extends JPanel{
         public void mousePressed(MouseEvent e) {
             SFX.playSound(SFX.click);
             if(e.getSource()==lbPlayGame){
+                SFX.stopAllClip();
                 SFX.playSound(SFX.start);
                 mContainer.setShowPlay();
             }

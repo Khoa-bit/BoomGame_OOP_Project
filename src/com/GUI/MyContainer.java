@@ -49,6 +49,8 @@ public class MyContainer extends JPanel {
     public void setShowOption() {
         mCardLayout.show(MyContainer.this, TAG_OPTION);
         mOption.requestFocus();
+        SFX.stopAllClip();
+        SFX.playSoundLoop(SFX.highScore);
     }
 
     public void setShowPlay() {
@@ -64,6 +66,8 @@ public class MyContainer extends JPanel {
         mCardLayout.show(MyContainer.this, TAG_HIGH_SCORE);
         mHighScorePanel.ReadFileHighScore();
         mHighScorePanel.requestFocus();
+        SFX.stopAllClip();
+        SFX.playSoundLoop(SFX.highScore);
     }
 
 }

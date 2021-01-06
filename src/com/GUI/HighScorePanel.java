@@ -97,6 +97,7 @@ public class HighScorePanel extends JPanel implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==btn_ok){
 			SFX.playSound(SFX.click);
+			SFX.stopAllClip();
 			mContainer.setShowMenu();
 		}	
 	}
