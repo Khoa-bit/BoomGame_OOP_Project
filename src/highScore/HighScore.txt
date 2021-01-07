@@ -1,6 +1,6 @@
-Thay Phu dep trai:30
+Mr Phu:30
 Mai Oanh:25
-Dat ngok ngek:25
+Dat:25
 Khoa Aka:24
-Dat beo:22
-Khoa Sieu Nhan:20
+Khoc:22
+Không tên:20
