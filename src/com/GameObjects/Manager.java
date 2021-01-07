@@ -31,8 +31,18 @@ public class Manager {
     private int status = 0;
     private String Background;
 
-    public Manager() {
+    // Singleton
+    private static Manager myManager;
+
+    private Manager() {
         innitManager();
+    }
+
+    public static Manager getInstance() {
+        if (myManager == null) {
+            myManager = new Manager();
+        }
+        return myManager;
     }
 
     public void innitManager() {

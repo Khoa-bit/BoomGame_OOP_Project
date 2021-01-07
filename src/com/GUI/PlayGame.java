@@ -19,9 +19,8 @@ public class PlayGame extends JPanel implements Runnable, ActionListener {
     public static boolean IS_RUNNING = true;
     private MyContainer mContainer;
     private BitSet traceKey = new BitSet();
-    private Manager mManager = new Manager();
+    private Manager mManager = Manager.getInstance();
     private int count = 0;
-    private int deadlineBomb = 0;
     private int move = 0;
     private int timeDead = 0;
     private int timeLose = 0;
