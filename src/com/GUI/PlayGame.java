@@ -49,6 +49,11 @@ public class PlayGame extends JPanel implements Runnable, ActionListener {
         add(btn_Menu);
     }
 
+    /**
+     * Paint all component on screen
+     *
+     * @param g the Graphics
+     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -90,6 +95,9 @@ public class PlayGame extends JPanel implements Runnable, ActionListener {
         }
     };
 
+    /**
+     * The main game loop is responsible for game logic and input listeners.
+     */
     @Override
     public void run() {
         while (IS_RUNNING) {

@@ -88,6 +88,11 @@ public class Manager {
         initArrItem(pathItem);
     }
 
+    /**
+     * Load items to game map
+     *
+     * @param pathItem the path to item map's directory
+     */
     public void initArrItem(String pathItem) {
         FileReader itemFile = null;
         BufferedReader bufferedString = null;
@@ -113,6 +118,11 @@ public class Manager {
 
     }
 
+    /**
+     * Load box to game map
+     *
+     * @param pathBox the path to box map's directory
+     */
     public void innitArrBox(String pathBox) {
         try {
             FileReader file = new FileReader(pathBox);
@@ -133,6 +143,11 @@ public class Manager {
         }
     }
 
+    /**
+     * Load all monster to game map
+     *
+     * @param path the path to monster map's directory
+     */
     public void initArrMonster(String path) {
 //        For this to work effectively Boss must be last on MONSTER.txt
         try {
@@ -161,6 +176,11 @@ public class Manager {
         }
     }
 
+    /**
+     * Load high score
+     *
+     * @param path the path to high score's directory
+     */
     public void innitArrHighScore(String path) {
         try {
             FileReader file = new FileReader(path);
@@ -180,6 +200,11 @@ public class Manager {
         }
     }
 
+    /**
+     * Load box's shadow to game map
+     *
+     * @param pathShadow the path to shadow map's directory
+     */
     public void innitArrShadow(String pathShadow) {
         try {
             FileReader file = new FileReader(pathShadow);
@@ -204,6 +229,9 @@ public class Manager {
         }
     }
 
+    /**
+     * Innit bomb and check Bomber's bombs quantity.
+     */
     public void innitBomb() {
         int x = mBomber.getX() + mBomber.getWidth() / 2;
         int y = mBomber.getY() + mBomber.getHeight() / 2;
@@ -222,6 +250,9 @@ public class Manager {
         arrBomb.add(mBomb);
     }
 
+    /**
+     * Sets Bomber location when it dies or starts a round.
+     */
     public void setNewBomber() {
         switch (round) {
             case 1:
@@ -239,6 +270,12 @@ public class Manager {
         }
     }
 
+    /**
+     * Draw dialog on screen.
+     *
+     * @param g2d  the Graphics2D
+     * @param type the type of dialogs
+     */
     public void drawDialog(Graphics2D g2d, int type) {
         g2d.setFont(new Font("Arial", Font.BOLD, 70));
         g2d.setColor(Color.RED);
@@ -322,6 +359,9 @@ public class Manager {
         }
     }
 
+    /**
+     * Check if bomber gets hit by Monster or Bomb Bang.
+     */
     public void checkDead() {
         if (PlayGame.GOD_MODE) {
             return;
@@ -353,6 +393,9 @@ public class Manager {
         }
     }
 
+    /**
+     * Check Bomber's lives to end game and monsters count to start new round
+     */
     public void checkWinAndLose() {
         if (mBomber.getHeart() == 0 && nextRound) {
             round = 1;
@@ -410,6 +453,11 @@ public class Manager {
         }
     }
 
+    /**
+     * Count down bombs and bomb bangs
+     * Generate Bomb explosion
+     * Check collision with all Character
+     */
     public void deadLineAllBomb() {
         for (int i = 0; i < arrBomb.size(); i++) {
             arrBomb.get(i).deadlineBomb();
@@ -472,7 +520,10 @@ public class Manager {
         }
     }
 
-    
+
+    /**
+     * Disable Bomber ability to go through bombs.
+     */
     public void setRunBomer() {
         if (arrBomb.size() > 0) {
             if (arrBomb.get(arrBomb.size() - 1).setRun(mBomber) == false) {
@@ -481,6 +532,9 @@ public class Manager {
         }
     }
 
+    /**
+     * Randomly change all Monsters' orientations.
+     */
     public void changeOrientAll() {
         for (int i = 0; i < arrMonster.size(); i++) {
             int orient = random.nextInt(4) + 1;
@@ -488,6 +542,11 @@ public class Manager {
         }
     }
 
+    /**
+     * Move all monsters.
+     *
+     * @param count the speed of monsters.
+     */
     public void moveAllMonster(int count) {
         for (int i = 0; i < arrMonster.size(); i++) {
             if (arrMonster.get(i).move(count, arrBomb, arrBox) == false) {
@@ -497,6 +556,9 @@ public class Manager {
         }
     }
 
+    /**
+     * Save score to a text file.
+     */
     public void saveScore() {
         System.out.println();
         // if(mBomber.getScore() > arrHighScore.get(arrHighScore.size()-1).getScore()){
