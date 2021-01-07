@@ -30,6 +30,7 @@ public class Manager {
     private boolean nextRound = true;
     private int status = 0;
     private String Background;
+    int count = 0;
 
     // Singleton
     private static Manager myManager;
@@ -62,11 +63,13 @@ public class Manager {
                 status = 0;
                 break;
 
-            case 3:
+            case 3:     
                 mBomber.setNew(315, 495);
                 innit("src/Map3/BOX.txt", "src/Map3/SHADOW.txt", "src/Map3/MONSTER.txt", "src/Map3/ITEM.txt");
                 nextRound = true;
                 status = 0;
+                SFX.stopAllClip();
+                SFX.playSoundLoop(SFX.game3);
                 break;
 
             default:
@@ -242,7 +245,8 @@ public class Manager {
         g2d.setColor(Color.RED);
         if (type == 1) {
             g2d.drawString("You Lose !!!", 200, 250);
-        } else {
+        } 
+        else {
             if (type == 2) {
                 g2d.drawString("Round " + round, 200, 250);
             } else {
@@ -365,9 +369,11 @@ public class Manager {
                 round = 1;
                 return;
             }
+            
             round = round + 1;
             nextRound = false;
             status = 2;
+            SFX.playSound(SFX.win);
         }
     }
 
@@ -393,6 +399,7 @@ public class Manager {
                     arrItem.remove(i);
                     break;
                 }
+                
             }
         }
     }
@@ -405,8 +412,6 @@ public class Manager {
                         arrBox);
                 arrBombBang.add(bomBang);
                 arrBomb.remove(i);
-
-                // GameSFX.play(GameSFX.bombBang, false);
                 SFX.playSound(SFX.boomBang);
             }
         }
@@ -418,8 +423,6 @@ public class Manager {
                             arrBomb.get(j).getSize(), arrBox);
                     arrBombBang.add(bomBang);
                     arrBomb.remove(j);
-
-                    // GameSFX.play(GameSFX.bombBang, false);
                     SFX.playSound(SFX.boomBang);
                 }
             }
@@ -437,28 +440,33 @@ public class Manager {
                 if (arrBombBang.get(k).doesBombBangImpactCharacter(arrMonster.get(j))) {
                     if (arrMonster.get(j).getHeart() > 1) {
                         arrMonster.get(j).setHeart(arrMonster.get(j).getHeart() - 1);
-                    } else {
+                    } 
+                    else {
                         if (arrMonster.get(j).getType() == Character.BOSS) {
                             mBomber.setScore(mBomber.getScore() + 10);
-                        } else {
+                        } 
+                        else {
                             mBomber.setScore(mBomber.getScore() + 1);
                         }
                         SFX.playSound(SFX.monsterDead);
                         arrMonster.remove(j);
                     }
                 }
-            }
+            }   
         }
+
         for (int i = 0; i < arrBombBang.size(); i++) {
             for (int j = 0; j < arrBox.size(); j++) {
                 if (arrBombBang.get(i).doesBombBangImpactBox(arrBox.get(j))) {
                     arrBox.remove(j);
                     arrShadow.remove(j);
-                }
+                }   
             }
+        
         }
     }
 
+    
     public void setRunBomer() {
         if (arrBomb.size() > 0) {
             if (arrBomb.get(arrBomb.size() - 1).setRun(mBomber) == false) {
