@@ -5,6 +5,7 @@ package com.GameObjects;
 import Sounds.SFX;
 
 import com.GUI.GUI;
+import com.GUI.PlayGame;
 
 import java.awt.Image;
 import javax.swing.*;
@@ -322,6 +323,10 @@ public class Manager {
     }
 
     public void checkDead() {
+        if (PlayGame.GOD_MODE) {
+            return;
+        }
+
         for (int i = 0; i < arrBombBang.size(); i++) {
             if (arrBombBang.get(i).doesBombBangImpactCharacter(mBomber) && mBomber.getStatus() == Bomber.ALIVE) {
                 Image icon = new ImageIcon(getClass().getResource("/Images/bomber_dead.png")).getImage();

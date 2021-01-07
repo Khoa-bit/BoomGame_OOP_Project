@@ -27,6 +27,9 @@ public class PlayGame extends JPanel implements Runnable, ActionListener {
     private int timeNext = 0;
     private JButton btn_Menu;
 
+//  GOD_MODE for debugging and demoing purposes
+    public static boolean GOD_MODE = false;
+
     public PlayGame(MyContainer mContainer) {
         this.mContainer = mContainer;
         setBackground(Color.WHITE);
