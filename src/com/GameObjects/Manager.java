@@ -28,7 +28,7 @@ public class Manager {
     private ArrayList<Monster> arrBoss;
     private ArrayList<HighScore> arrHighScore;
     private ArrayList<Item> arrItem;
-    private int round = 3;
+    private int round = 1;
     private boolean nextRound = true;
     private int status = 0;
     private String Background;
