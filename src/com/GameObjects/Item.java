@@ -40,6 +40,11 @@ public class Item extends Immovable {
         this.timeLine = timeLine;
     }
 
+    /**
+     * @summary This method is to check whether the Bomber impacts any items or not
+     * @param bomber
+     * @return
+     */
     public boolean doesBomberImpactItem(Bomber bomber) {
         // Create 2 rectangle to check intersection
         Rectangle rec1 = new Rectangle(x, y, width, height);

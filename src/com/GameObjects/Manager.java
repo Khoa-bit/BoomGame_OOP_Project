@@ -33,11 +33,19 @@ public class Manager {
     private boolean nextRound = true;
     private int status = 0;
     private String Background;
+    private static Manager uniqueManager;
     int count = 0;
 
-    public Manager() {
+    private Manager() {
         mBomber = new Bomber(0, 540, Movable.BOMBER, Movable.DOWN, 3, 5, 5);
         innitManager();
+    }
+
+    public static synchronized Manager getInstance() {
+        if (uniqueManager == null) {
+            uniqueManager = new Manager();
+        }
+        return uniqueManager;
     }
 
     public void innitManager() {
@@ -57,7 +65,7 @@ public class Manager {
                 status = 0;
                 break;
 
-            case 3:     
+            case 3:
                 mBomber.setNew(315, 495);
                 innit("src/Map3/BOX.txt", "src/Map3/SHADOW.txt", "src/Map3/MONSTER.txt", "src/Map3/ITEM.txt");
                 nextRound = true;
@@ -149,7 +157,7 @@ public class Manager {
      * @param path the path to monster map's directory
      */
     public void initArrMonster(String path) {
-//        For this to work effectively Boss must be last on MONSTER.txt
+        // For this to work effectively Boss must be last on MONSTER.txt
         try {
             FileReader file = new FileReader(path);
             BufferedReader input = new BufferedReader(file);
@@ -281,8 +289,7 @@ public class Manager {
         g2d.setColor(Color.RED);
         if (type == 1) {
             g2d.drawString("You Lose !!!", 200, 250);
-        } 
-        else {
+        } else {
             if (type == 2) {
                 g2d.drawString("Round " + round, 200, 250);
             } else {
@@ -329,6 +336,11 @@ public class Manager {
         g2d.drawImage(imgBackground, 0, 0, null);
     }
 
+    /**
+     * @summary This method is to draw the right layouts of the PlayGame GUI which
+     *          displays the current SCORE,HEART
+     * @param g2d
+     */
     public void drawInfo(Graphics2D g2d) {
         Image imgInfor = new ImageIcon(getClass().getResource("/Images/background_Info.png")).getImage();
         g2d.setFont(new Font("Arial", Font.BOLD, 20));
@@ -405,7 +417,7 @@ public class Manager {
             SFX.playSound(SFX.lose);
             saveScore();
 
-//            Disable this function
+            // Disable this function
             mBomber.setHeart(-1);
         }
         if (arrMonster.size() == 0 && nextRound) {
@@ -418,7 +430,7 @@ public class Manager {
                 round = 1;
                 return;
             }
-            
+
             round = round + 1;
             nextRound = false;
             status = 2;
@@ -448,15 +460,14 @@ public class Manager {
                     arrItem.remove(i);
                     break;
                 }
-                
+
             }
         }
     }
 
     /**
-     * Count down bombs and bomb bangs
-     * Generate Bomb explosion
-     * Check collision with all Character
+     * Count down bombs and bomb bangs Generate Bomb explosion Check collision with
+     * all Character
      */
     public void deadLineAllBomb() {
         for (int i = 0; i < arrBomb.size(); i++) {
@@ -494,19 +505,17 @@ public class Manager {
                 if (arrBombBang.get(k).doesBombBangImpactCharacter(arrMonster.get(j))) {
                     if (arrMonster.get(j).getHeart() > 1) {
                         arrMonster.get(j).setHeart(arrMonster.get(j).getHeart() - 1);
-                    } 
-                    else {
+                    } else {
                         if (arrMonster.get(j).getType() == Movable.BOSS) {
                             mBomber.setScore(mBomber.getScore() + 10);
-                        } 
-                        else {
+                        } else {
                             mBomber.setScore(mBomber.getScore() + 1);
                         }
                         SFX.playSound(SFX.monsterDead);
                         arrMonster.remove(j);
                     }
                 }
-            }   
+            }
         }
 
         for (int i = 0; i < arrBombBang.size(); i++) {
@@ -514,12 +523,11 @@ public class Manager {
                 if (arrBombBang.get(i).doesBombBangImpactBox(arrBox.get(j))) {
                     arrBox.remove(j);
                     arrShadow.remove(j);
-                }   
+                }
             }
-        
+
         }
     }
-
 
     /**
      * Disable Bomber ability to go through bombs.

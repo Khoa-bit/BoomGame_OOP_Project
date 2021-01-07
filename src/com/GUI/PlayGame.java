@@ -18,7 +18,7 @@ public class PlayGame extends JPanel implements Runnable, ActionListener {
     public static boolean IS_RUNNING = true;
     private MyContainer mContainer;
     private BitSet traceKey = new BitSet();
-    private Manager mManager = new Manager();
+    private Manager mManager = Manager.getInstance();
     private int count = 0;
     private int deadlineBomb = 0;
     private int move = 0;
@@ -27,7 +27,7 @@ public class PlayGame extends JPanel implements Runnable, ActionListener {
     private int timeNext = 0;
     private JButton btn_Menu;
 
-//  GOD_MODE for debugging and demoing purposes
+    // GOD_MODE for debugging and demoing purposes
     public static boolean GOD_MODE = false;
 
     public PlayGame(MyContainer mContainer) {
