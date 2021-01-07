@@ -443,7 +443,7 @@ public class Manager {
                         arrMonster.get(j).setHeart(arrMonster.get(j).getHeart() - 1);
                     } 
                     else {
-                        if (arrMonster.get(j).getType() == Character.BOSS) {
+                        if (arrMonster.get(j).getType() == Movable.BOSS) {
                             mBomber.setScore(mBomber.getScore() + 10);
                         } 
                         else {

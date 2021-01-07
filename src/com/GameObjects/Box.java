@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.geom.Rectangle2D;
 
 public class Box extends Immovable{
-    private final int width, height;
+//    private final int width, height;
     private final boolean destructible;
     private final Image img;
 
