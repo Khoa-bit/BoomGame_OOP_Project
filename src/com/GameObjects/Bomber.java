@@ -1,37 +1,40 @@
 package com.GameObjects;
 
-import java.awt.Image;
+import java.awt.*;
 import java.util.ArrayList;
-import java.awt.Rectangle;
 import javax.swing.ImageIcon;
 
-public class Bomber extends Character {
-    public static int ALLOW_RUN = 0;
-    public static int DISALLOW_RUN = 1;
-    protected int sizeBomb, quantityBomb, status, score, heart;
+public class Bomber extends Movable {
+    public static final int ALIVE = 1;
+    public static final int DEAD = 0;
 
-    public Bomber(int x, int y, int type, int orient, int speed, int sizebomb, int quantityBomb) {
-        this.x = x;
-        this.y = y;
-        this.type = type;
-        this.runBomb = DISALLOW_RUN;
-        this.orient = orient;
-        this.speed = speed;
-        this.sizeBomb = sizebomb;
+    protected int sizeBomb, quantityBomb, status, score;
+
+
+    public Bomber(int x, int y, int type, int orient, int speed, int sizeBomb, int quantityBomb) {
+        super(x, y, type, orient, speed);
+        this.sizeBomb = sizeBomb;
         this.quantityBomb = quantityBomb;
         this.heart = 3;
         this.score = 0;
-        this.status = Character.ALIVE;
+        this.status = ALIVE;
+
         this.img = new ImageIcon(getClass().getResource("/Images/bomber_down.png")).getImage();
         width = img.getWidth(null);
         height = img.getHeight(null) - 20;
     }
+
 
     public void setNew(int x, int y) {
         this.x = x;
         this.y = y;
         this.status = ALIVE;
         this.img = new ImageIcon(getClass().getResource("/Images/bomber_down.png")).getImage();
+    }
+
+    @Override
+    public void drawSelf(Graphics2D g2d) {
+        g2d.drawImage(img, x, y - 20, null);
     }
 
     public int getScore() {
@@ -76,18 +79,6 @@ public class Bomber extends Character {
         return sizeBomb;
     }
 
-    public int getType() {
-        return type;
-    }
-
-    public int getHeart() {
-        return heart;
-    }
-
-    public void setHeart(int heart) {
-        this.heart = heart;
-    }
-
     @Override
     public boolean move(int count, ArrayList<Bomb> arrBomb, ArrayList<Box> arrBox) {
         if (status == DEAD) {
@@ -96,28 +87,11 @@ public class Bomber extends Character {
         return super.move(count, arrBomb, arrBox);
     }
 
-    @Override
     public void changeOrient(int orient) {
         if (status == DEAD) {
             return;
         }
-        super.changeOrient(orient);
-        switch (orient) {
-            case LEFT:
-                img = new ImageIcon(getClass().getResource("/Images/bomber_left.png")).getImage();
-                break;
-            case RIGHT:
-                img = new ImageIcon(getClass().getResource("/Images/bomber_right.png")).getImage();
-                break;
-            case UP:
-                img = new ImageIcon(getClass().getResource("/Images/bomber_up.png")).getImage();
-                break;
-            case DOWN:
-                img = new ImageIcon(getClass().getResource("/Images/bomber_down.png")).getImage();
-                break;
-            default:
-                break;
-        }
+        super.changeOrient(orient, "/Images/bomber_");
     }
 
     public boolean isImpactBomberVsCharacter(Character character) {

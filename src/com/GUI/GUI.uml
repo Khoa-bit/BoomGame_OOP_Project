@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="0.0" y="0.0">com.GUI.PlayGame</node>
+    <node x="522.5498120300751" y="168.0">com.GUI.GUI</node>
+    <node x="174.32753759398497" y="669.0">com.GUI.HighScorePanel</node>
+    <node x="204.82753759398497" y="476.0">com.GUI.MyContainer</node>
+    <node x="75.71334586466165" y="268.0">com.GUI.Menu</node>
+    <node x="323.7133458646616" y="279.0">com.GUI.Option</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.GUI.Option" target="com.GUI.GUI">
+      <point x="0.0" y="-38.0" />
+      <point x="452.2133458646616" y="248.0" />
+      <point x="548.2640977443609" y="248.0" />
+      <point x="-10.285714285714278" y="15.0" />
+    </edge>
+    <edge source="com.GUI.PlayGame" target="com.GUI.MyContainer">
+      <point x="-107.08333333333337" y="49.0" />
+      <point x="21.41666666666663" y="148.0" />
+      <point x="32.21334586466165" y="148.0" />
+      <point x="32.21334586466165" y="456.0" />
+      <point x="210.95253759398497" y="456.0" />
+      <point x="-91.875" y="-71.5" />
+    </edge>
+    <edge source="com.GUI.Menu" target="com.GUI.GUI">
+      <point x="76.0" y="-49.0" />
+      <point x="265.7133458646616" y="238.0" />
+      <point x="537.9783834586467" y="238.0" />
+      <point x="-20.571428571428555" y="15.0" />
+    </edge>
+    <edge source="com.GUI.Menu" target="com.GUI.MyContainer">
+      <point x="85.5" y="49.0" />
+      <point x="275.2133458646616" y="386.0" />
+      <point x="296.70253759398497" y="386.0" />
+      <point x="-6.125" y="-71.5" />
+    </edge>
+    <edge source="com.GUI.MyContainer" target="com.GUI.PlayGame">
+      <point x="-67.375" y="-71.5" />
+      <point x="235.45253759398497" y="436.0" />
+      <point x="54.21334586466165" y="436.0" />
+      <point x="54.21334586466165" y="128.0" />
+      <point x="107.08333333333337" y="128.0" />
+      <point x="-21.41666666666663" y="49.0" />
+    </edge>
+    <edge source="com.GUI.Option" target="com.GUI.MyContainer">
+      <point x="96.37500000000003" y="38.0" />
+      <point x="548.5883458646617" y="416.0" />
+      <point x="345.70253759398497" y="416.0" />
+      <point x="42.87499999999999" y="-71.5" />
+    </edge>
+    <edge source="com.GUI.GUI" target="com.GUI.MyContainer">
+      <point x="0.0" y="15.0" />
+      <point x="558.5498120300751" y="248.0" />
+      <point x="591.2133458646617" y="248.0" />
+      <point x="591.2133458646617" y="426.0" />
+      <point x="357.95253759398497" y="426.0" />
+      <point x="55.12499999999999" y="-71.5" />
+    </edge>
+    <edge source="com.GUI.MyContainer" target="com.GUI.Menu">
+      <point x="-30.625" y="-71.5" />
+      <point x="272.20253759398497" y="406.0" />
+      <point x="161.21334586466165" y="406.0" />
+      <point x="-28.5" y="49.0" />
+    </edge>
+    <edge source="com.GUI.MyContainer" target="com.GUI.GUI">
+      <point x="67.375" y="-71.5" />
+      <point x="370.20253759398497" y="436.0" />
+      <point x="602.2133458646617" y="436.0" />
+      <point x="602.2133458646617" y="238.0" />
+      <point x="568.8355263157895" y="238.0" />
+      <point x="10.285714285714278" y="15.0" />
+    </edge>
+    <edge source="com.GUI.HighScorePanel" target="com.GUI.MyContainer">
+      <point x="-32.125" y="-82.0" />
+      <point x="270.70253759398497" y="644.0" />
+      <point x="278.32753759398497" y="644.0" />
+      <point x="-24.5" y="71.5" />
+    </edge>
+    <edge source="com.GUI.Menu" target="com.GUI.PlayGame">
+      <point x="-76.0" y="-49.0" />
+      <point x="113.71334586466165" y="248.0" />
+      <point x="116.0" y="248.0" />
+      <point x="116.0" y="148.0" />
+      <point x="192.75" y="148.0" />
+      <point x="64.25" y="49.0" />
+    </edge>
+    <edge source="com.GUI.MyContainer" target="com.GUI.HighScorePanel">
+      <point x="73.5" y="71.5" />
+      <point x="376.32753759398497" y="644.0" />
+      <point x="399.20253759398497" y="644.0" />
+      <point x="96.375" y="-82.0" />
+    </edge>
+    <edge source="com.GUI.MyContainer" target="com.GUI.Option">
+      <point x="18.375" y="-71.5" />
+      <point x="321.20253759398497" y="396.0" />
+      <point x="420.0883458646616" y="396.0" />
+      <point x="-32.125" y="38.0" />
+    </edge>
+    <edge source="com.GUI.GUI" target="com.GUI.PlayGame">
+      <point x="0.0" y="-15.0" />
+      <point x="558.5498120300751" y="148.0" />
+      <point x="235.58333333333337" y="148.0" />
+      <point x="107.08333333333337" y="49.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="274.0" y="189.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Properties</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>protected</VISIBILITY>
+</Diagram>
+

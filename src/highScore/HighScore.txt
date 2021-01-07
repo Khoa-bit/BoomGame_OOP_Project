@@ -4,4 +4,11 @@ Dat ngok ngek:25
 Khoa Aka:24
 Dat beo:22
 Khoa Sieu Nhan:20
+<<<<<<< HEAD
+null:11
+null:11
+Oanh cute:10
+null:2
+=======
 null:18
+>>>>>>> main

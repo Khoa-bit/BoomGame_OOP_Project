@@ -5,6 +5,7 @@ package com.GameObjects;
 import Sounds.SFX;
 
 import com.GUI.GUI;
+
 import java.awt.Image;
 import javax.swing.*;
 import java.awt.Color;
@@ -24,33 +25,25 @@ public class Manager {
     private ArrayList<Bomb> arrBomb;
     private ArrayList<BombBang> arrBombBang;
     private ArrayList<Monster> arrMonster;
+    private ArrayList<Monster> arrBoss;
     private ArrayList<HighScore> arrHighScore;
     private ArrayList<Item> arrItem;
-    private int round = 1;
+    private int round = 3;
     private boolean nextRound = true;
     private int status = 0;
     private String Background;
     int count = 0;
 
-    // Singleton
-    private static Manager myManager;
-
-    private Manager() {
+    public Manager() {
+        mBomber = new Bomber(0, 540, Movable.BOMBER, Movable.DOWN, 3, 5, 5);
         innitManager();
-    }
-
-    public static Manager getInstance() {
-        if (myManager == null) {
-            myManager = new Manager();
-        }
-        return myManager;
     }
 
     public void innitManager() {
         // System.out.print("Manager init");
         switch (round) {
             case 1:
-                mBomber = new Bomber(0, 540, Character.BOMBER, Character.DOWN, 3, 1, 2);
+                mBomber.setNew(0, 540);
                 innit("src/Map1/BOX.txt", "src/Map1/SHADOW.txt", "src/Map1/MONSTER.txt", "src/Map1/ITEM.txt");
                 nextRound = true;
                 status = 0;
@@ -84,6 +77,7 @@ public class Manager {
         arrBomb = new ArrayList<>();
         arrBombBang = new ArrayList<>();
         arrMonster = new ArrayList<>();
+        arrBoss = new ArrayList<>();
         arrHighScore = new ArrayList<>();
         arrItem = new ArrayList<>();
         innitArrBox(pathBox);
@@ -139,6 +133,7 @@ public class Manager {
     }
 
     public void initArrMonster(String path) {
+//        For this to work effectively Boss must be last on MONSTER.txt
         try {
             FileReader file = new FileReader(path);
             BufferedReader input = new BufferedReader(file);
@@ -154,6 +149,9 @@ public class Manager {
                 String images = str[6];
                 Monster monster = new Monster(x, y, type, orient, speed, heart, images);
                 arrMonster.add(monster);
+                if (type == Movable.BOSS) {
+                    arrBoss.add(monster);
+                }
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -257,34 +255,34 @@ public class Manager {
 
     public void drawAllBomb(Graphics2D g2d) {
         for (int i = 0; i < arrBomb.size(); i++) {
-            arrBomb.get(i).drawCharacter(g2d);
+            arrBomb.get(i).drawSelf(g2d);
         }
         for (int i = 0; i < arrBombBang.size(); i++) {
-            arrBombBang.get(i).drawBongBang(g2d);
+            arrBombBang.get(i).drawSelf(g2d);
         }
     }
 
     public void drawAllMonster(Graphics2D g2d) {
-        for (int i = 0; i < arrMonster.size(); i++) {
-            arrMonster.get(i).drawCharacter(g2d);
+        for (int i = 0; i < arrMonster.size() - arrBoss.size(); i++) {
+            arrMonster.get(i).drawSelf(g2d);
         }
     }
 
-    public void drawBoss(Graphics2D g2d) {
-        for (int i = 0; i < arrMonster.size(); i++) {
-            arrMonster.get(i).drawBoss(g2d);
+    public void drawAllBoss(Graphics2D g2d) {
+        for (int i = 0; i < arrBoss.size(); i++) {
+            arrBoss.get(i).drawSelf(g2d);
         }
     }
 
     public void drawAllBox(Graphics2D g2d) {
         for (Box box : arrBox) {
-            box.drawBox(g2d);
+            box.drawSelf(g2d);
         }
     }
 
     public void drawAllShawDow(Graphics2D g2d) {
         for (Box shadow : arrShadow) {
-            shadow.drawBox(g2d);
+            shadow.drawSelf(g2d);
         }
     }
 
@@ -319,7 +317,7 @@ public class Manager {
 
     public void drawAllItem(Graphics2D g2d) {
         for (int i = 0; i < arrItem.size(); i++) {
-            arrItem.get(i).drawItem(g2d);
+            arrItem.get(i).drawSelf(g2d);
         }
     }
 
@@ -358,6 +356,9 @@ public class Manager {
             SFX.stopAllClip();
             SFX.playSound(SFX.lose);
             saveScore();
+
+//            Disable this function
+            mBomber.setHeart(-1);
         }
         if (arrMonster.size() == 0 && nextRound) {
             if (round == 3) {

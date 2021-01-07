@@ -11,7 +11,6 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.BitSet;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -19,8 +18,9 @@ public class PlayGame extends JPanel implements Runnable, ActionListener {
     public static boolean IS_RUNNING = true;
     private MyContainer mContainer;
     private BitSet traceKey = new BitSet();
-    private Manager mManager = Manager.getInstance();
+    private Manager mManager = new Manager();
     private int count = 0;
+    private int deadlineBomb = 0;
     private int move = 0;
     private int timeDead = 0;
     private int timeLose = 0;
@@ -60,10 +60,10 @@ public class PlayGame extends JPanel implements Runnable, ActionListener {
                                    // front of all the items
         mManager.drawAllBox(g2d);
         mManager.drawAllMonster(g2d);
-        mManager.getmBomber().drawCharacter(g2d);
+        mManager.getmBomber().drawSelf(g2d);
         mManager.drawAllShawDow(g2d);
         mManager.drawInfo(g2d);
-        mManager.drawBoss(g2d);
+        mManager.drawAllBoss(g2d);
         if (mManager.getStatus() == 1) {
             mManager.drawDialog(g2d, 1);
         }

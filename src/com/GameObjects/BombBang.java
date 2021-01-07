@@ -9,13 +9,12 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
-public class BombBang {
-    private int x, y, size, timeLine;
+public class BombBang extends Immovable {
+    private int size, timeLine;
     private Image img_left, img_right, img_up, img_down;
 
     public BombBang(int x, int y, int size, ArrayList<Box> arrBox) {
-        this.x = x;
-        this.y = y;
+        super(x, y);
         this.size = size;
         this.timeLine = 250; // This timeLine is the speed of motion that the bomb explodes
         img_left = new ImageIcon(getClass().getResource("/Images/bombbang_left_1.png")).getImage();
@@ -39,21 +38,22 @@ public class BombBang {
                 }
             }
             if (tmp_left == 0) {
-                setImage(Bomber.LEFT, i + 1);
+                setImage(LEFT, i + 1);
             }
             if (tmp_right == 0) {
-                setImage(Bomber.RIGHT, i + 1);
+                setImage(RIGHT, i + 1);
             }
             if (tmp_up == 0) {
-                setImage(Bomber.UP, i + 1);
+                setImage(UP, i + 1);
             }
             if (tmp_dow == 0) {
-                setImage(Bomber.DOWN, i + 1);
+                setImage(DOWN, i + 1);
             }
         }
     }
 
-    public void drawBongBang(Graphics2D g2d) {
+    @Override
+    public void drawSelf(Graphics2D g2d) {
         g2d.drawImage(img_left, x + GUI.TILES - img_left.getWidth(null), y, null);
         g2d.drawImage(img_right, x, y, null);
         g2d.drawImage(img_up, x, y + GUI.TILES - img_up.getHeight(null), null);
@@ -63,22 +63,22 @@ public class BombBang {
     public void setImage(int orient, int size) {
         // Set maximum bomb size to 2
         switch (orient) {
-            case Bomber.LEFT:
+            case LEFT:
                 if (size == 2) {
                     img_left = new ImageIcon(getClass().getResource("/Images/bombbang_left_2.png")).getImage();
                 }
                 break;
-            case Bomber.RIGHT:
+            case RIGHT:
                 if (size == 2) {
                     img_right = new ImageIcon(getClass().getResource("/Images/bombbang_right_2.png")).getImage();
                 }
                 break;
-            case Bomber.UP:
+            case UP:
                 if (size == 2) {
                     img_up = new ImageIcon(getClass().getResource("/Images/bombbang_up_2.png")).getImage();
                 }
                 break;
-            case Bomber.DOWN:
+            case DOWN:
                 if (size == 2) {
                     img_down = new ImageIcon(getClass().getResource("/Images/bombbang_down_2.png")).getImage();
                 }
@@ -109,7 +109,7 @@ public class BombBang {
         return oldBomb.intersects(newBomb);
     }
 
-    public boolean doesBombBangImpactCharacter(Character character) {
+    public boolean doesBombBangImpactCharacter(Movable movable) {
         Rectangle bang_left = new Rectangle(x + 45 - img_left.getWidth(null) + 5, y + 5, img_left.getWidth(null) - 5,
                 img_left.getHeight(null) - 10);
         Rectangle bang_right = new Rectangle(x, y + 5, img_right.getWidth(null) - 5, img_right.getHeight(null) - 10);
@@ -117,8 +117,8 @@ public class BombBang {
                 img_up.getHeight(null) - 10);
         Rectangle bang_down = new Rectangle(x + 5, y, img_down.getWidth(null) - 10, img_down.getHeight(null) - 5);
 
-        Rectangle characterRectangle = new Rectangle(character.getX(), character.getY(), character.getWidth(),
-                character.getHeight());
+        Rectangle characterRectangle = new Rectangle(movable.getX(), movable.getY(), movable.getWidth(),
+                movable.getHeight());
         if (bang_left.intersects(characterRectangle) || bang_right.intersects(characterRectangle)
                 || bang_up.intersects(characterRectangle) || bang_down.intersects(characterRectangle)) {
             return true;
