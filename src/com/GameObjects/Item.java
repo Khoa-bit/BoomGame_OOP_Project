@@ -6,18 +6,16 @@ import java.awt.Rectangle;
 
 import javax.swing.ImageIcon;
 
-public class Item {
+public class Item extends Immovable {
 
     public static int Item_Bomb = 1;
     public static int Item_BombSize = 2;
     public static int Item_Shoe = 3;
-    private int x, y, type, width, height, timeLine;
+    private int type, width, height, timeLine;
     private Image img;
 
     public Item(int x, int y, int type, String image) {
-        super();
-        this.x = x;
-        this.y = y;
+        super(x, y);
         this.type = type;
         this.img = new ImageIcon(getClass().getResource(image)).getImage();
         this.width = img.getWidth(null);
@@ -25,28 +23,13 @@ public class Item {
         timeLine = 250;
     }
 
-    public void drawItem(Graphics2D g2d) {
+    @Override
+    public void drawSelf(Graphics2D g2d) {
         g2d.drawImage(img, x, y, null);
-    }
-
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
     }
 
     public int getType() {
         return type;
-    }
-
-    public int getWidth() {
-        return width;
-    }
-
-    public int getHeight() {
-        return height;
     }
 
     public int getTimeLine() {

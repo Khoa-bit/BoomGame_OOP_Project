@@ -4,4 +4,3 @@ Dat ngok ngek:25
 Khoa Aka:24
 Dat beo:22
 Khoa Sieu Nhan:20
-null:18
